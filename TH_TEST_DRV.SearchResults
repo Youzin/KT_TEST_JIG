@@ -1,0 +1,2 @@
+---- ADC: Matches (1 in 1 files) ----
+Debug.c:	printf("ADC: %d %d", adv.dcv,  adv.dca);
