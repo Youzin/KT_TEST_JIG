@@ -3,18 +3,18 @@
 <project>
   <fileVersion>2</fileVersion>
   <configuration>
-    <name>TH_5G_TEST</name>
+    <name>5G_TEST_JIG</name>
     <toolchain>
       <name>ARM</name>
     </toolchain>
-    <debug>0</debug>
+    <debug>1</debug>
     <settings>
       <name>C-SPY</name>
       <archiveVersion>2</archiveVersion>
       <data>
         <version>27</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>CInput</name>
           <state>1</state>
@@ -219,7 +219,7 @@
       <data>
         <version>1</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OCSimDriverInfo</name>
           <state>1</state>
@@ -244,7 +244,7 @@
       <data>
         <version>0</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>CCAngelHeartbeat</name>
           <state>1</state>
@@ -287,7 +287,7 @@
       <data>
         <version>2</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OCDriverInfo</name>
           <state>1</state>
@@ -458,7 +458,7 @@
       <data>
         <version>0</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OCDriverInfo</name>
           <state>1</state>
@@ -495,7 +495,7 @@
       <data>
         <version>1</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>CRomLogFileCheck</name>
           <state>0</state>
@@ -526,7 +526,7 @@
       <data>
         <version>6</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OCDriverInfo</name>
           <state>1</state>
@@ -748,7 +748,7 @@
       <data>
         <version>15</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>JLinkSpeed</name>
           <state>32</state>
@@ -948,7 +948,7 @@
       <data>
         <version>2</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OCDriverInfo</name>
           <state>1</state>
@@ -981,7 +981,7 @@
       <data>
         <version>3</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>jtag</name>
           <version>0</version>
@@ -1070,7 +1070,7 @@
       <data>
         <version>2</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OCDriverInfo</name>
           <state>1</state>
@@ -1099,7 +1099,7 @@
       <data>
         <version>2</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>CRDIDriverDll</name>
           <state>Browse to your RDI driver</state>
@@ -1156,7 +1156,7 @@
       <data>
         <version>3</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OCDriverInfo</name>
           <state>0</state>
@@ -1228,11 +1228,11 @@
         </option>
         <option>
           <name>CCSTLinkCatchINTERR</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCSTLinkCatchHARDERR</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCSTLinkCatchDummy</name>
@@ -1259,7 +1259,7 @@
       <data>
         <version>0</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>CThirdPartyDriverDll</name>
           <state>Browse to your third-party driver</state>
@@ -1284,7 +1284,7 @@
       <data>
         <version>4</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OCDriverInfo</name>
           <state>1</state>

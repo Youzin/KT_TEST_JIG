@@ -2,7 +2,7 @@
 
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armstlink2.dll" 
 
-"H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\TH_TEST_DRV\EWARM\TH_5G_TEST\Exe\SKT_5G.out" 
+"H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\TH_5G_TEST\Exe\SKT_5G.out" 
 
 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armbat.dll" 
 

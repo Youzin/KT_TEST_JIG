@@ -42,20 +42,21 @@ extern int fw_version;
 	
 	I2C_Configuration();
 
-
+	CAN_Config();
 
 	//ADC_Configuration();	
 	SPI_Configuration();
 	Timer4_Init();
 	UART_Configuration();	
 
-	RTC_Configuration1();
+	//RTC_Configuration1();
 
-	RCC_ClearFlag();
-	EXTI1_Config();
+	//RCC_ClearFlag();
+	//EXTI1_Config();
 	DMA_Configuration();
 	ADC_Configuration_scanmode();
-	Reset_W5200();	// WIZ_RESET not available
+	DAC_Configuration();
+	//Reset_W5200();	// WIZ_RESET not available
 
 	//printf("\n\n====================================\n");
 	printf(" TH-5G PSU \n");
@@ -63,6 +64,7 @@ extern int fw_version;
 	printf("FW %08X \n\r", fw_version);
   	printf("====================================\n");
 
+	//while(1);
 	rabm_main();
 
 }

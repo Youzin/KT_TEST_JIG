@@ -34,7 +34,7 @@ void Delay(uint32_t nCount)
 
 void	sys_error(int no)
 {
-	printf("\n\rError : %d", no);
+	printf("\nSYS Error : %d", no);
 }
 
 

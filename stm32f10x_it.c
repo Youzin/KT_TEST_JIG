@@ -74,8 +74,12 @@ volatile unsigned int time3ms = 0;
 
 ADC_VALUE adv, ad_temp;
 
-uint32_t dhcp_time;		// 1 sec timer
+unsigned long	dhcp_time;		// 1 sec timer
 unsigned char	dhcp_timer_flag = 0;
+uint16_t bat_can_sts = 0,bat_can_prt = 0, bat_can_v, bat_can_a, bat_can_flag = 0;
+CanRxMsg RxMessage;
+
+
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -174,7 +178,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-	GPIO_WriteBit(GPIOA, GPIO_Pin_8, (BitAction)(1 - GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_8)));
+	//GPIO_WriteBit(GPIOA, GPIO_Pin_8, (BitAction)(1 - GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_8)));
 
 }
 
@@ -404,21 +408,12 @@ void TIM4_IRQHandler(void)
 	TIM_SetCompare1(TIM4, rcapture + 1440); //200us
     tmcnt++;
 
-	//WD_reset();
-
-	//GPIO_SetBits(GOUT_LED_POWER, LED_POWER_PIN);
-	// GPIO_WriteBit(GPIOA, GPIO_Pin_8, (BitAction)(1 - GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_8)));
     if ( !(tmcnt % 10 ) ) time10ms ++;
 
     if(tmcnt>= 1000 )
     {   // 1sec
      //GPIO_WriteBit(GPIOA, GPIO_Pin_8, (BitAction)(1 - GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_8)));
-     
-     #if 1
-	  if (dhcp_timer_flag ) {
-		dhcp_time++;
-	  }
-	  #endif
+
 	  tmcnt =0;
 	  //Timer4_sec_ISR();
     }
@@ -481,6 +476,33 @@ void EXTI1_IRQHandler(void)
     EXTI_ClearITPendingBit(EXTI_Line1);
   }
 }
+
+void USB_LP_CAN1_RX0_IRQHandler(void)
+{
+#if  0
+	static int c= 0;
+	if (c == 0 ) {
+		relay_on(6);
+	}
+	else relay_off(6);
+	c = 1-c;
+#endif
+
+  CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
+  if ((RxMessage.ExtId == CAN_READ_BMS ))	// FOR LOOPBACK TEST
+  //if (RxMessage.ExtId == CAN_RSP_BMS )   // 0x1000c080))		// CAN RX CODE
+  { 	
+		//bat_can_v =  *(uint16_t *) &RxMessage.Data[0];
+		//bat_can_a =  *(uint16_t *) &RxMessage.Data[2];
+	    //bat_can_sts = *(uint16_t *) &RxMessage.Data[4];
+		//bat_can_prt = *(uint16_t *) &RxMessage.Data[6];
+		bat_can_flag = 1;
+	  }
+
+  CAN_ClearITPendingBit(CAN1,CAN_IT_FMP0);  
+}
+
+
 
 
 

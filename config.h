@@ -32,7 +32,6 @@ void		USART_TxNData(unsigned char *buf, int size);
 uint8_t		USART_Scanf(uint32_t value);
 void		GPIOA_Configuration();
 void SerialPutChar(uint8_t );
-void	DAC_WriteCh(uint32_t ch, int	value);
 
 
 void RCC_Configuration(void);
@@ -49,6 +48,7 @@ void	DMA_Configuration(void);
 void	ADC_Configuration_scanmode(void);
 void	Reset_W5200(void);
 void read_adc();
+void Init_RxMes(CanRxMsg *RxMessage);
 
 
 /* IO map
@@ -117,12 +117,17 @@ PD2 : Relay2, GPIO output, ext. pulldown
 #define ADC_RECT	13
 #define ADC_BATT	0
 
+#define	GPIO_PWR_ARM		GPIOC
+#define	PWR_ARM_PIN		GPIO_Pin_0
 
-#define	GIN_AC_FAIL		GPIOA
+
+#define	GPIO_AC_FAIL		GPIOA
 #define	AC_FAIL_PIN		GPIO_Pin_1
 
-#define	GOUT_LED_POWER	GPIOA
-#define	LED_POWER_PIN	GPIO_Pin_8
+#define	GOUT_LED_POWER	GPIOB
+#define	LED_POWER_PIN	GPIO_Pin_1
+
+#if 0
 
 
 #define	GPIO_LED_RUN	GPIOA
@@ -130,18 +135,19 @@ PD2 : Relay2, GPIO output, ext. pulldown
 
 #define	GPIO_LED_FAIL	GPIOA
 #define	LED_FAIL	GPIO_Pin_12
-
+#endif
 
 #define	GPIO_RECT_ON	GPIOA
 #define	RECT_ON		GPIO_Pin_2
 
-
 #define	GPIO_DI_BAT_SW		GPIOA
 #define	DI_BAT_SW		GPIO_Pin_3
-	
 
-#define	GPIO_BAT_TEST_SW	GPIOB
-#define	BAT_TEST_SW	GPIO_Pin_8
+#define GPIO_WD			GPIOA
+#define WD_PIN 			GPIO_Pin_15
+
+
+
 
 
 #define	NORMAL_OPEN	0
@@ -153,49 +159,56 @@ PD2 : Relay2, GPIO output, ext. pulldown
 
 #define 	RELAY_SKT		4
 
-#define GIN_SELHW	GPIOB
-#define SELHW_PIN	GPIO_Pin_0
+#define GPIO_PFC_TH	GPIOB
+#define PFC_TH_PIN	GPIO_Pin_0
+#define GPIO_PFC1	GPIOB
+#define PFC1_PIN	GPIO_Pin_12
+#define GPIO_PFC2	GPIOB
+#define PFC2_PIN	GPIO_Pin_13
+#define GPIO_PFC3	GPIOB
+#define PFC3_PIN	GPIO_Pin_14
+#define GPIO_PFC4	GPIOB
+#define PFC4_PIN	GPIO_Pin_15
 
-#define GIN_SELETH	GPIOB
-#define SELETH_PIN	GPIO_Pin_1
+#define GPIO_TP5	GPIOB
+#define TP5_PIN	GPIO_Pin_1
 
 
-#define GOUT_RELAY1 GPIOC
+#define GPIO_RELAY1 GPIOC
 #define RELAY1_PIN	GPIO_Pin_12
-#define GOUT_RELAY2 GPIOD
+#define GPIO_RELAY2 GPIOD
 #define RELAY2_PIN	GPIO_Pin_2
-#define GOUT_RELAY3 GPIOB
+#define GPIO_RELAY3 GPIOB
 #define RELAY3_PIN	GPIO_Pin_3
-#define GOUT_RELAY4 GPIOB
+#define GPIO_RELAY4 GPIOB
 #define RELAY4_PIN	GPIO_Pin_4
+#define GPIO_RELAY5 GPIOB
+#define RELAY5_PIN	GPIO_Pin_5
+#define GPIO_RELAY6 GPIOB
+#define RELAY6_PIN	GPIO_Pin_8
 
-#define GOUT_ACFAIL	GPIOC
-#define ACFAIL_PIN GPIO_Pin_0	
+//#define	GPIO_BAT_TEST_SW	GPIOB
+//#define	BAT_TEST_SW	GPIO_Pin_8
 
-#define GOUT_OUTSEL	GPIOC
-#define OUTSEL_PIN  GPIO_Pin_2	
+#define GPIO_RECT_CON	GPIOC
+#define RECT_CON_PIN		GPIO_Pin_3
+#define GPIO_LOAD_ON	GPIOC
+#define LOAD_ON_PIN		GPIO_Pin_4
 
-
-#define GOUT_ETH_SEL	GPIOC
-#define ETH_SEL_PIN		GPIO_Pin_11
-#define GIN_BAT_PWR	GPIOC
-#define BAT_PWR_PIN 	GPIO_Pin_10
-
-#define GOUT_WD			GPIOA
-#define WD_PIN 			GPIO_Pin_15
-
-#define GOUT_PWR_LED	GPIOA
-#define PWR_LED_PIN 	GPIO_Pin_8
-
-#define GIN_BAT_CHG		GPIOC
-#define BAT_CHG_PIN 	GPIO_Pin_8
-#define GIN_BAT_DCHG	GPIOC
-#define BAT_DCHG_PIN 	GPIO_Pin_9
-#define GIN_BAT_NFB		GPIOC
+#define GPIO_BAT_NFB	GPIOC
 #define BAT_NFB_PIN 	GPIO_Pin_7
+#define GPIO_BAT_CHG	GPIOC
+#define BAT_CHG_PIN 	GPIO_Pin_8
+#define GPIO_BAT_DCHG	GPIOC
+#define BAT_DCHG_PIN 	GPIO_Pin_9
+#define GPIO_BAT_PWR	GPIOC
+#define BAT_PWR_PIN 	GPIO_Pin_10
+#define GPIO_ETH_SEL	GPIOC
+#define ETH_SEL_PIN		GPIO_Pin_11
 
-#define GOUT_SR_ON	GPIOA		//GPIOC //GPIOA
-#define SR_ON_PIN 	GPIO_Pin_5 //GPIO_Pin_13 //
+
+#define GPIO_SR_ON	GPIOC		//GPIOC //GPIOA
+#define SR_ON_PIN 	GPIO_Pin_6 //GPIO_Pin_13 //
 
 //#define relay_on(no) GPIO_WriteBit(GPIO_RELAY, RELAY1 << (no -1), 1)
 //#define relay_off(no) GPIO_WriteBit(GPIO_RELAY, RELAY1 << (no -1), 0)
@@ -260,8 +273,13 @@ void	set_alarm_mode(int mode);
 int	EEPROM_SendAddr(uint8_t addr, uint32_t rw );
 int	EEPROM_SendData(uint8_t data);
 
-void DAC_write(uint32_t value);
-uint32_t DAC_read();
+void DAC_WriteCh(int ch, int value);
+int DAC_ReadCh(int ch);
+
+void DAC_I2C_write(int ch, int value);
+int DAC_I2C_read(int ch);
+
+
 
 void init_adc_dr();
 
@@ -270,4 +288,17 @@ void init_adc_dr();
 #define	disable()	__set_PRIMASK(1)
 
 void	dprintf(char *, ...);
+
+#define RCC_APB2Periph_GPIO_CAN1	RCC_APB2Periph_GPIOB
+#define GPIO_Remapping_CAN 			GPIO_Remap1_CAN1
+#define GPIO_CAN					GPIOA
+#define GPIO_Pin_CAN_RX			GPIO_Pin_11
+#define GPIO_Pin_CAN_TX			GPIO_Pin_12
+#define CANx	CAN1
+
+#define CAN_READ_BMS		0x1800c001	// host = 0x00, bms = 0x01
+#define CAN_RSP_BMS			0x1000c080
+
+void Init_TxMessage();
+
 

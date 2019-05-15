@@ -33,7 +33,7 @@ void	DAC_Configuration();
  __IO uint32_t TimeDisplay = 0;
 
 uint8_t fram_addr = 0xa0;
-uint8_t dac_addr[2] = {0x1C, 0x1A};
+uint8_t dac_addr[2] = {0x1a, 0x1c};
 uint8_t rect_restart;
 
 #if 1
@@ -57,7 +57,6 @@ extern unsigned int	rx_head, rx_tail, tx_head, tx_tail;
 extern float Vref;
 extern int	eeprom_OK;
 
-
 USART_InitTypeDef USART_InitStructure;
 GPIO_InitTypeDef GPIO_InitStructure;
 
@@ -80,6 +79,215 @@ uint16_t	adc_dr[10];
 uint32_t    dst, src;
 ADC_InitTypeDef           ADC_InitStructure;
 DMA_InitTypeDef           DMA_InitStructure;
+
+#define __CAN1_USED__
+
+CAN_InitTypeDef        CAN_InitStructure;
+CAN_FilterInitTypeDef  CAN_FilterInitStructure;
+CanTxMsg TxMessage;
+extern CanRxMsg RxMessage;
+
+void CAN_reset()
+{
+	
+	  /* CAN cell init */
+	  CAN_InitStructure.CAN_TTCM = DISABLE;
+	  CAN_InitStructure.CAN_ABOM = DISABLE;
+	  CAN_InitStructure.CAN_AWUM = DISABLE;
+	  CAN_InitStructure.CAN_NART = DISABLE;
+	  CAN_InitStructure.CAN_RFLM = DISABLE;
+	  CAN_InitStructure.CAN_TXFP = DISABLE;
+	  CAN_InitStructure.CAN_Mode = CAN_Mode_Normal;
+	  //CAN_InitStructure.CAN_Mode = CAN_Mode_LoopBack;
+	
+#if 0  
+	  /* CAN Baudrate = 1MBps*/  
+	  CAN_InitStructure.CAN_SJW = CAN_SJW_1tq;
+	  CAN_InitStructure.CAN_BS1 = CAN_BS1_3tq;
+	  CAN_InitStructure.CAN_BS2 = CAN_BS2_5tq;
+	  CAN_InitStructure.CAN_Prescaler = 4;
+#endif
+		/* CAN Baudrate = 250Kbps*/  
+	
+		CAN_InitStructure.CAN_SJW=CAN_SJW_1tq;
+		CAN_InitStructure.CAN_BS1=CAN_BS1_8tq;
+		CAN_InitStructure.CAN_BS2=CAN_BS2_7tq;
+		CAN_InitStructure.CAN_Prescaler=9; 
+	  CAN_Init(CANx, &CAN_InitStructure);
+	
+	  /* CAN filter init */
+#ifdef  __CAN1_USED__
+	  CAN_FilterInitStructure.CAN_FilterNumber = 0;
+#else /*__CAN2_USED__*/
+	  CAN_FilterInitStructure.CAN_FilterNumber = 14;
+#endif  /* __CAN1_USED__ */
+	  CAN_FilterInitStructure.CAN_FilterMode = CAN_FilterMode_IdMask;
+	  CAN_FilterInitStructure.CAN_FilterScale = CAN_FilterScale_32bit;
+	  CAN_FilterInitStructure.CAN_FilterIdHigh = 0x0000;
+	  CAN_FilterInitStructure.CAN_FilterIdLow = 0x0000;
+	  CAN_FilterInitStructure.CAN_FilterMaskIdHigh = 0x0000;
+	  CAN_FilterInitStructure.CAN_FilterMaskIdLow = 0x0000;
+	  CAN_FilterInitStructure.CAN_FilterFIFOAssignment = 0;
+	  CAN_FilterInitStructure.CAN_FilterActivation = ENABLE;
+	  CAN_FilterInit(&CAN_FilterInitStructure);
+	  
+	  /* Transmit */
+	 //Init_TxMessage();
+	 //Init_RxMes(&RxMessage);
+
+
+}
+
+void CAN_Config(void)
+{
+  GPIO_InitTypeDef  GPIO_InitStructure;
+  NVIC_InitTypeDef  NVIC_InitStructure;
+
+
+
+	NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN1_RX0_IRQn;
+	//NVIC_InitStructure.NVIC_IRQChannel = CAN1_RX1_IRQn;
+
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+
+  
+  /* GPIO clock enable */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIO_CAN1, ENABLE);
+
+  /* Configure CAN pin: RX */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_CAN_RX;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+  GPIO_Init(GPIO_CAN, &GPIO_InitStructure);
+  
+  /* Configure CAN pin: TX */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_CAN_TX;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(GPIO_CAN, &GPIO_InitStructure);
+  
+  //GPIO_PinRemapConfig(GPIO_Remapping_CAN , ENABLE);
+
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_CAN1, ENABLE);
+
+  
+  
+  /* CAN register init */
+  CAN_DeInit(CANx);
+  CAN_StructInit(&CAN_InitStructure);
+
+  /* CAN cell init */
+  CAN_InitStructure.CAN_TTCM = DISABLE;
+  CAN_InitStructure.CAN_ABOM = DISABLE;
+  CAN_InitStructure.CAN_AWUM = DISABLE;
+  CAN_InitStructure.CAN_NART = DISABLE;
+  CAN_InitStructure.CAN_RFLM = DISABLE;
+  CAN_InitStructure.CAN_TXFP = DISABLE;
+  CAN_InitStructure.CAN_Mode = CAN_Mode_Normal;
+  //CAN_InitStructure.CAN_Mode = CAN_Mode_LoopBack;
+
+#if 0  
+  /* CAN Baudrate = 1MBps*/  
+  CAN_InitStructure.CAN_SJW = CAN_SJW_1tq;
+  CAN_InitStructure.CAN_BS1 = CAN_BS1_3tq;
+  CAN_InitStructure.CAN_BS2 = CAN_BS2_5tq;
+  CAN_InitStructure.CAN_Prescaler = 4;
+#endif
+	/* CAN Baudrate = 250Kbps*/  
+
+  	CAN_InitStructure.CAN_SJW=CAN_SJW_1tq;
+	CAN_InitStructure.CAN_BS1=CAN_BS1_8tq;
+	CAN_InitStructure.CAN_BS2=CAN_BS2_7tq;
+	CAN_InitStructure.CAN_Prescaler=9; 
+  CAN_Init(CANx, &CAN_InitStructure);
+
+  /* CAN filter init */
+#ifdef  __CAN1_USED__
+  CAN_FilterInitStructure.CAN_FilterNumber = 0;
+#else /*__CAN2_USED__*/
+  CAN_FilterInitStructure.CAN_FilterNumber = 14;
+#endif  /* __CAN1_USED__ */
+  CAN_FilterInitStructure.CAN_FilterMode = CAN_FilterMode_IdMask;
+  CAN_FilterInitStructure.CAN_FilterScale = CAN_FilterScale_32bit;
+  CAN_FilterInitStructure.CAN_FilterIdHigh = 0x0000;
+  CAN_FilterInitStructure.CAN_FilterIdLow = 0x0000;
+  CAN_FilterInitStructure.CAN_FilterMaskIdHigh = 0x0000;
+  CAN_FilterInitStructure.CAN_FilterMaskIdLow = 0x0000;
+  CAN_FilterInitStructure.CAN_FilterFIFOAssignment = 0;
+  CAN_FilterInitStructure.CAN_FilterActivation = ENABLE;
+  CAN_FilterInit(&CAN_FilterInitStructure);
+  
+  /* Transmit */
+ Init_TxMessage();
+ Init_RxMes(&RxMessage);
+
+  /* CAN FIFO0 message pending interrupt enable */ 
+  CAN_ITConfig(CANx, CAN_IT_FMP0, ENABLE);
+}
+
+/**
+  * @brief  Initializes a Rx Message.
+  * @param  CanRxMsg *RxMessage
+  * @retval None
+  */
+void Init_RxMes(CanRxMsg *RxMessage)
+{
+  uint8_t i = 0;
+
+  RxMessage->StdId = 0x00;
+  RxMessage->ExtId = 0x00;
+  RxMessage->IDE = CAN_ID_EXT;
+  //RxMessage->IDE = CAN_ID_STD;
+  RxMessage->DLC = 0;
+  RxMessage->FMI = 0;
+  for (i = 0;i < 8;i++)
+  {
+    RxMessage->Data[i] = 0x00;
+  }
+}
+
+
+void test_TxMessage()
+{
+	/* Transmit */
+	TxMessage.StdId = 0x0;
+	TxMessage.ExtId = CAN_RSP_BMS; // CAN_READ_BMS, host addr = 0x00, bms Addr = 0x01
+	TxMessage.RTR = CAN_RTR_DATA;
+	//TxMessage.RTR = CAN_RTR_REMOTE;
+	TxMessage.IDE = CAN_ID_EXT;
+	TxMessage.DLC = 8;
+
+	TxMessage.Data[0] = bms.v & 0xff;
+	TxMessage.Data[1] = ( bms.v >> 8 ) & 0xff;
+	TxMessage.Data[2] = bms.a & 0xff;
+	TxMessage.Data[3] = ( bms.a >> 8 ) & 0xff;
+	TxMessage.Data[4] = bms.sts & 0xff;
+	TxMessage.Data[5] = ( bms.sts >> 8 ) & 0xff;
+	TxMessage.Data[6] = bms.prt & 0xff;
+	TxMessage.Data[7] = ( bms.prt >> 8 ) & 0xff;
+}
+
+
+void Init_TxMessage()
+{
+	/* Transmit */
+	TxMessage.StdId = 0x0;
+	TxMessage.ExtId = CAN_READ_BMS; // CAN_READ_BMS, host addr = 0x00, bms Addr = 0x01
+	//TxMessage.RTR = CAN_RTR_DATA;
+	TxMessage.RTR = CAN_RTR_REMOTE;
+	TxMessage.IDE = CAN_ID_EXT;
+	TxMessage.DLC = 4;
+
+	TxMessage.Data[0] = 0x00;
+	TxMessage.Data[1] = 0x00;
+	TxMessage.Data[2] = 0x17;	//15s
+	TxMessage.Data[3] = 0x00;	
+
+}
 
 
 void DMA_Configuration_dualmode(void)
@@ -184,7 +392,7 @@ void DMA_Configuration(void)
 	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)ADC1_DR_Address;
 	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)adc_dr;
 	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
-	DMA_InitStructure.DMA_BufferSize = 6;
+	DMA_InitStructure.DMA_BufferSize = 3;
 	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
@@ -256,10 +464,6 @@ void init_adc_dr()
 
 }
 
-
-
-
-
 void ADC_Configuration_scanmode(void)
 {
   	GPIO_InitTypeDef GPIO_InitStructure;
@@ -269,11 +473,11 @@ void ADC_Configuration_scanmode(void)
 
 	RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC | RCC_APB2Periph_ADC1, ENABLE);
 
-  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_1 | GPIO_Pin_3 | GPIO_Pin_4;
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_1 | GPIO_Pin_2;
   GPIO_InitStructure.GPIO_Speed =  0; //GPIO_Speed_2MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; 
   GPIO_Init(GPIOC, &GPIO_InitStructure);
-#if 1
+#if 0
   GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_5;
   	GPIO_InitStructure.GPIO_Speed = 0; // GPIO_Speed_2MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
@@ -292,19 +496,14 @@ void ADC_Configuration_scanmode(void)
 	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;
 	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
 	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;  //ADC_DataAlign_Right; 
-	ADC_InitStructure.ADC_NbrOfChannel = 6;
+	ADC_InitStructure.ADC_NbrOfChannel = 3;
 	ADC_Init(ADC1, &ADC_InitStructure);
 	/* ADC1 regular channels configuration */ 
 
-	//ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_28Cycles5); // dcv
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_11, 1, ADC_SampleTime_28Cycles5); // dca
-	//ADC_RegularChannelConfig(ADC1, ADC_Channel_12, 3, ADC_SampleTime_28Cycles5);	//bca
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_13, 2, ADC_SampleTime_28Cycles5);	// rect
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_28Cycles5); // dcv
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_11, 2, ADC_SampleTime_28Cycles5); // dca
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 3, ADC_SampleTime_28Cycles5);	// batt
 
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 4, ADC_SampleTime_28Cycles5); // batv
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_15, 5, ADC_SampleTime_28Cycles5); // pc5
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_17, 6, ADC_SampleTime_28Cycles5); // ref
 	
 	ADC_Cmd(ADC1, ENABLE);
 
@@ -441,12 +640,12 @@ void	 GPIOA_Configuration()
 	gpio2 : rect on, 5: SR on/off, 6: ECS_RESET, 7:ECS_CS, 8: POWER LED, 11: FAIL LED, 12:RUN LED, 15: WATHC DOG RESET
 
 */
-	GPIO_InitStructure.GPIO_Pin =   GPIO_Pin_2 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_15;	// rect_on, rect_enl
+	GPIO_InitStructure.GPIO_Pin =   GPIO_Pin_1 | GPIO_Pin_3 | GPIO_Pin_15;	// rect_on, rect_enl
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-#if 1
+#if 0
 	GPIO_InitStructure.GPIO_Pin =   GPIO_Pin_11 |GPIO_Pin_12;	//  led_run, led_fail
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -461,11 +660,11 @@ void	 GPIOA_Configuration()
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	/* Configure USART1 Rx as input floating */
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_3;  // USART1 RX, BAT_SW
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 ;  // USART1 RX, BAT_SW
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;  // USART1 RX, BAT_SW
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;  // AC_FAIL, RECT_ON
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
 
@@ -495,7 +694,12 @@ void	GPIOB_Configuration()
 	GPIO_Write(GPIOB, 0x00);
 
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1 ;	// jumper select
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_8;	// jumper select
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;	// jumper select
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
@@ -506,31 +710,6 @@ void	GPIOB_Configuration()
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);	
 	*/
-
-	// WIZ_RESET
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4| GPIO_Pin_12 | GPIO_Pin_9| GPIO_Pin_10;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_Init(GPIOB, &GPIO_InitStructure);
-	
-	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-	GPIO_Init(GPIOB, &GPIO_InitStructure);
-
-#if 0
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStructure);
-#endif
-
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_11;		// bat test sw, Eth_int
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStructure);
-
-	//BAT_CON_ON();
 	
 }
 
@@ -543,7 +722,7 @@ void	GPIOD_Configuration()
 
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;	
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init( GPIOD, &GPIO_InitStructure);
 
@@ -558,13 +737,18 @@ void	GPIOC_Configuration()
 
 	GPIO_Write(GPIOC, ETH_SEL_PIN);
 
+	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_0 ;	
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_0 | GPIO_Pin_2 | GPIO_Pin_11| GPIO_Pin_12| GPIO_Pin_13 ;	
+
+	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 ;	
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 ;		// bat test sw, Eth_int
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_12 ;		
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &GPIO_InitStructure);
@@ -572,7 +756,7 @@ void	GPIOC_Configuration()
 	/* Configure PC.04 (Channel14)
 	as analog input ----------------------------------------------------------*/
 	// 0:dcv, 1: LDA+, 2:BCA+, 3:REC_TEMP, 4: BAT V
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1|GPIO_Pin_3| GPIO_Pin_4;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1|GPIO_Pin_2;
 	GPIO_InitStructure.GPIO_Speed =  GPIO_Speed_2MHz; 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
 	GPIO_Init(GPIOC, &GPIO_InitStructure);
@@ -606,35 +790,40 @@ void GPIO_Configuration(void)
 	GPIOC_Configuration();
 	GPIOD_Configuration();
 
-	//GPIO_WriteBit(GPIO_RECT_ON , RECT_ON, (BitAction) 0);
-
-	GPIO_WriteBit(GOUT_LED_POWER , LED_POWER_PIN, (BitAction) 0);
+	#if 0
+	GPIO_WriteBit(GPIO_LED_POWER , LED_POWER_PIN, (BitAction) 0);
 	GPIO_WriteBit(GPIO_LED_RUN , LED_RUN, (BitAction) 0);
 	GPIO_WriteBit(GPIO_LED_FAIL , LED_FAIL, (BitAction) 0);
+	#endif
 }
 
-u32	DAC_ReadCh(u32 ch)
+int	DAC_ReadCh(int ch)
 {
 	if ( ch == 1 ) {
 		return DAC->DOR1;
 	}
 	else if ( ch == 2 ) {
-		return DAC->DOR1;		
+		return DAC->DOR2;		
+	}
+	else if (ch == 3 || ch == 4 ) {
+		return DAC_I2C_read(ch-2);
 	}
 	else sys_error(__LINE__);
         return -1;
 }
 
 
-void	DAC_WriteCh(u32 ch, int	value)
+void	DAC_WriteCh(int ch, int	value)
 {
 
 	static int pvalue = 0xffff;
 
-	if ( pvalue == value ) return;
+	//if ( pvalue == value ) return;
 	
 	if ( value < 1 ) value = 0;
 	else if ( value > 4095 ) value = 4095;
+
+	//value = 4000;
 	
 	if ( ch == 1 ) {
 		DAC->DHR12R1 = value;
@@ -647,6 +836,9 @@ void	DAC_WriteCh(u32 ch, int	value)
 		DAC->DHR12R2 = value;
 		DAC->SWTRIGR |= DAC_SWTRIGR_SWTRIG2;
 	}
+		else if (ch == 3 || ch == 4 ) {
+		DAC_I2C_write(ch-2, value);
+	}
 	else sys_error(__LINE__);
 }
 
@@ -655,8 +847,8 @@ void	DAC_Configuration()
 	DAC_DeInit();
 	RCC_APB1PeriphClockCmd( RCC_APB1Periph_DAC, ENABLE);
 
-	DAC->CR |= DAC_CR_TSEL1 | DAC_CR_TEN1 | DAC_CR_EN1;	//DAC1  sw trigger and enable
-	DAC->CR |= DAC_CR_TSEL2 | DAC_CR_TEN2 | DAC_CR_EN2;	//DAC2  sw trigger and enable
+	DAC->CR = DAC_CR_TSEL1 | DAC_CR_TEN1 | DAC_CR_EN1 | DAC_CR_BOFF1;	//DAC1  sw trigger and enable
+	DAC->CR |= DAC_CR_TSEL2 | DAC_CR_TEN2 | DAC_CR_EN2 | DAC_CR_BOFF2;	//DAC2  sw trigger and enable
 
 	DAC_WriteCh(1, 0);		// 0V, default DC_REF
 	DAC_WriteCh(2, 0);	// charge current off mode : MAX
@@ -832,6 +1024,22 @@ void USART1_Init(void)
 	/* Enable GPIO clock */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE); 
 
+
+	/* Configure USART1 Tx as alternate function push-pull */
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	/* Configure USART1 Rx as input floating */
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 ;  // USART1 RX, BAT_SW
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+
+	USART_DeInit(USART1);
+
+
+
 	/* USART configuration */
     USART_InitStructure.USART_BaudRate   = 115200; //57600;	
     USART_InitStructure.USART_WordLength = USART_WordLength_8b;
@@ -991,6 +1199,7 @@ void NVIC_Configuration(void)
 #endif
 
 
+#if 1
 	/* 1 bit for pre-emption priority, 3 bits for subpriority */
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 
@@ -1000,6 +1209,7 @@ void NVIC_Configuration(void)
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
+#endif
 
 
  
@@ -1031,7 +1241,7 @@ void NVIC_Configuration(void)
 #else  /* VECT_TAB_FLASH  */
    /* Set the Vector Table base location at 0x08000000 */
 
-	#if 1 // IAP
+	#if 0 // IAP
    	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x4000);	// for IAP 0-> 0x8000
    	#else
 	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0);	// for IAP 0-> 0x8000
@@ -1050,6 +1260,8 @@ void I2C_Configuration(void)
 	I2C_InitTypeDef  I2C_InitStructure;
 	GPIO_InitTypeDef GPIO_InitStructure;
 
+	//I2C_reset();
+
 	I2C_DeInit(I2C1);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
 
@@ -1065,10 +1277,10 @@ void I2C_Configuration(void)
 	/* I2C configuration */
 	I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
 	I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
-	I2C_InitStructure.I2C_OwnAddress1 = fram_addr; // I2C1_SLAVE_ADDRESS7;
+	I2C_InitStructure.I2C_OwnAddress1 =dac_addr[0]; // I2C1_SLAVE_ADDRESS7;
 	I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
 	I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-    I2C_InitStructure.I2C_ClockSpeed = 200000; //I2C_Speed =200Khz;
+    I2C_InitStructure.I2C_ClockSpeed = 100000; //I2C_Speed =200Khz;
 
 	/* I2C Peripheral Enable */
 	I2C_Cmd(I2C1, ENABLE);
@@ -1113,8 +1325,8 @@ void I2C_reset()
 
 }
 
-#if 0
-void DAC_write(int ch, uint32_t value)
+#if 1
+void DAC_I2C_write(int ch, int value)
 {
 		static	int timeout = 0;
 		uint8_t wdata[2];
@@ -1151,7 +1363,7 @@ void DAC_write(int ch, uint32_t value)
 		}	
 	
 		/* Send EEPROM address for write */
-		if ( EEPROM_SendAddr( dac_addr[ch], 0)!= 0 ) {
+		if ( EEPROM_SendAddr( dac_addr[ch-1], 0)!= 0 ) {
 				goto EEPROM_WRITE_ERROR;
 		} 
 	
@@ -1179,7 +1391,7 @@ void DAC_write(int ch, uint32_t value)
 }
 
 
-uint32_t DAC_read(int ch)
+int DAC_I2C_read(int ch)
 {
 	static int timeout;
 	uint32_t ret;
@@ -1196,17 +1408,26 @@ uint32_t DAC_read(int ch)
 	 /* Send STRAT condition */
 	 I2C_GenerateSTART(I2C1, ENABLE);
 	 /* Test on EV5 and clear it */
-	 
+
+	
 	 timeout = 0;
 	 while( timeout++ < EEPROM_R_WAIT && !I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT)) ;
 	 
 	 if ( timeout >= EEPROM_R_WAIT ) {
-		goto EEPROM_READ_ERROR;
+		 I2C_GenerateSTART(I2C1, ENABLE);
 	 }
-	 
+
+	 timeout = 0;
+	while( timeout++ < EEPROM_R_WAIT && !I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT)) ;
+		
+	
+	if ( timeout >= EEPROM_R_WAIT ) {
+		goto EEPROM_READ_ERROR;  
+	}	
 
 	/* Send EEPROM address for read */
-	if ( EEPROM_SendAddr(dac_addr[ch], 1)!= 0 ) goto EEPROM_READ_ERROR;
+	if ( EEPROM_SendAddr(dac_addr[ch-1], 1) != 0 ) goto EEPROM_READ_ERROR;
+	I2C_AcknowledgeConfig(I2C1, ENABLE);
 
 	size = 2;
 	while(size ) {
@@ -1214,28 +1435,27 @@ uint32_t DAC_read(int ch)
 	    {
 	      if(size == 2)
 	      {
-	        /* Disable Acknowledgement */
-	        I2C_AcknowledgeConfig(I2C1, DISABLE);
+			rdata[0] = I2C_ReceiveData(I2C1);
+			I2C_AcknowledgeConfig(I2C1, DISABLE);
 	      }
 
 	      if(size == 1)
 	      {
 	        /* Send STOP Condition */
-	        I2C_GenerateSTOP(I2C1, ENABLE);
+		    rdata[1] = I2C_ReceiveData(I2C1); 
+		  	I2C_GenerateSTOP(I2C1, ENABLE);
+			
 	      }
-
-	      /* Read a byte from the EEPROM */
-	      *buf = I2C_ReceiveData(I2C1);
-
-	      /* Point to the next location where the byte read will be saved */
-	      buf++;
-
-	      /* Decrement the read bytes counter */
 	      size--;
 	    }
 	}
 
+
 	ret = (rdata[0] & 0x0f) * 256 + rdata[1];
+
+	Delay(EEPROM_T_WAIT);
+
+	I2C_AcknowledgeConfig(I2C1, DISABLE);	// MUST diable ACK_config before disable the I2C controller
 
 	Delay(EEPROM_T_WAIT);
 	I2C_Cmd(I2C1, DISABLE);
@@ -1247,8 +1467,10 @@ uint32_t DAC_read(int ch)
 EEPROM_READ_ERROR:
 	I2C_GenerateSTOP(I2C1, ENABLE);
 	Delay(EEPROM_T_WAIT);
+	I2C_AcknowledgeConfig(I2C1, DISABLE);
 	I2C_Cmd(I2C1, DISABLE);
 	Delay(EEPROM_E_WAIT);
+
 	__enable_irq();
 
 	return 0xffff;
@@ -1683,8 +1905,8 @@ void SPI_Configuration(void)
 	SPI_Cmd(SPI2, ENABLE);
 
 
-	GPIO_SetBits(GPIOB, GPIO_Pin_12);
-	CS5463_CS_OFF;	//GPIO_WriteBit(GPIOA, GPIO_Pin_7, 1)
+	//GPIO_SetBits(GPIOB, GPIO_Pin_12);
+	//CS5463_CS_OFF;	//GPIO_WriteBit(GPIOA, GPIO_Pin_7, 1)
 	//CS5463_Sync();
 	
 }

@@ -774,6 +774,14 @@ typedef struct {
 
 } ALARM_TIMER;
 
+typedef struct {
+	uint16_t v;
+	uint16_t a;
+	uint16_t	sts;
+	uint16_t	prt;
+	uint16_t 	dis;
+} BMS_STS_T;
+
 
 #define	BAT_FAIL_TIME		(5 * 60)		// 5minutes SKT-SAMSUNG  default
 
@@ -967,6 +975,7 @@ extern	ALARM_STATUS	alarm_sts;
 extern	SYSTEM_INFO		sys_info;
 extern	int	reset_type;
 extern  uint8_t SERIAL_NO[];
+extern  BMS_STS_T	bms;
 
 
 char *get_string2(int arg);

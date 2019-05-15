@@ -3,7 +3,7 @@
 <project>
   <fileVersion>2</fileVersion>
   <configuration>
-    <name>SKT_5G</name>
+    <name>5G_TEST_JIG</name>
     <toolchain>
       <name>ARM</name>
     </toolchain>
@@ -1057,7 +1057,7 @@
       <name>$PROJ_DIR$\..\system_stm32f10x.c</name>
     </file>
     <configuration>
-      <name>SKT_5G</name>
+      <name>5G_TEST_JIG</name>
     </configuration>
   </group>
   <group>
@@ -1105,12 +1105,15 @@
       <name>$PROJ_DIR$\..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_can.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_cec.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dac.c</name>
       <configuration>
-        <name>SKT_5G</name>
+        <name>5G_TEST_JIG</name>
       </configuration>
     </file>
     <file>

@@ -39,27 +39,28 @@ CMD_RELAY_TEST = 0x86, CMD_EPROM_TEST = 0x87;
 
 #define CMD_ALL_TEST  0xa0
 
-IO_STS inputs[16] = {
-	{ GIN_BAT_DCHG, BAT_DCHG_PIN},
-	{ GIN_BAT_CHG, BAT_CHG_PIN},
-	{ GIN_BAT_NFB, BAT_NFB_PIN},		
-	{ GIN_BAT_PWR, BAT_PWR_PIN},
-	{ GIN_AC_FAIL, AC_FAIL_PIN},
-	{ GPIO_DI_BAT_SW, DI_BAT_SW},
-	//{ GIN_SELHW, SELHW_PIN},
-	//{ GIN_SELETH, SELETH_PIN},
-	//{ GPIO_BAT_TEST_SW, BAT_TEST_SW},
-	{ NULL, },
+IO_STS outputs[16] = {
+	{ GPIO_AC_FAIL, AC_FAIL_PIN},
+	{ GPIO_PWR_ARM, PWR_ARM_PIN},
+	{ NULL, 0 },
 };
 
-IO_STS outputs[8] = {
-	{ GOUT_RELAY1, RELAY1_PIN},
-	{ GOUT_RELAY2, RELAY2_PIN},
-	{ GOUT_RELAY3, RELAY3_PIN},
-	{ GOUT_RELAY4, RELAY4_PIN},
-	//{ GOUT_SR_ON, SR_ON_PIN},
-	{ GPIO_RECT_ON, RECT_ON},
-	{ GOUT_ACFAIL, ACFAIL_PIN},
+IO_STS inputs[16] = {
+	{ GPIO_RELAY1, RELAY1_PIN},
+	{ GPIO_RELAY2, RELAY2_PIN},
+	{ GPIO_RELAY3, RELAY3_PIN},
+	{ GPIO_RELAY4, RELAY4_PIN},
+	{ GPIO_RELAY5, RELAY5_PIN},
+	{ GPIO_RELAY6, RELAY6_PIN},
+	{ GPIO_SR_ON, SR_ON_PIN},
+	{ GPIO_RECT_CON, RECT_CON_PIN},
+	{ GPIO_PFC_TH, PFC_TH_PIN},
+	{GPIO_RECT_ON, RECT_ON},
+	{GPIO_LOAD_ON, LOAD_ON_PIN},
+	{ GPIO_PFC1, PFC1_PIN},
+	{ GPIO_PFC2, PFC2_PIN},
+	{ GPIO_PFC3, PFC3_PIN},
+	{ GPIO_PFC4, PFC4_PIN},		
 	{0, 0},
 	
 };
@@ -86,15 +87,15 @@ void LED_test_on()
 {
 	dprintf("LED on!\n");
 
-	GPIO_SetBits(GPIO_LED_RUN , LED_RUN);
-	GPIO_SetBits(GPIO_LED_FAIL , LED_FAIL);
+	//GPIO_SetBits(GPIO_LED_RUN , LED_RUN);
+	//GPIO_SetBits(GPIO_LED_FAIL , LED_FAIL);
 }
 
 void LED_test_off()
 {
 	dprintf("LED off!\n");
-	GPIO_ResetBits(GPIO_LED_RUN , LED_RUN);
-	GPIO_ResetBits(GPIO_LED_FAIL , LED_FAIL);
+	//GPIO_ResetBits(GPIO_LED_RUN , LED_RUN);
+	//GPIO_ResetBits(GPIO_LED_FAIL , LED_FAIL);
 }
 
 void relay_test_on()
@@ -122,21 +123,25 @@ int	test_mode_toggle()
 
 }
 
-extern uint16_t dac_value[2];
+extern uint16_t dac_value[];
 
 void dac_test()
 {
-	static int outv = 0;
+#if 0
+	uint16_t value = 3350;
+
+	DAC_WriteCh(1, value);
+	DAC_WriteCh(2, value);
+	DAC_WriteCh(3, value);
+	DAC_WriteCh(4, value);
+#endif
+#if 1
 	DAC_WriteCh(1, dac_value[0]);
 	DAC_WriteCh(2, dac_value[1]);
+	DAC_WriteCh(3, dac_value[2]);
+	DAC_WriteCh(4, dac_value[3]);
+#endif	
 	return;
-
-
-	if ( dac_test_flag == 0 ) return;
-
-	DAC_WriteCh(1, outv);
-	outv+= 100;
-	if ( outv >= 4095 ) outv  = 0;
 }
 
 void	cmd_self_test(byte cmd, byte mode)
@@ -208,8 +213,8 @@ void	cmd_adc_test(byte cmd, byte mode)
 	*pbuf++ = adv.batt;
 	*pbuf = adv.refv;
 
-	printf("ADC: %d %d", adv.dcv,  adv.dca);
-	printf(" %d %d %d\n", adv.rect,  adv.batt, adv.refv);
+	//printf("ADC: %d %d", adv.dcv/10,  adv.dca/10);
+	//printf(" %d %d %d\n", adv.rect,  adv.batt, adv.refv);
 	//*pbuf++ = ADC_ReadCh(RECT_T_CH);	// BAT TEMP	
 	//*pbuf++ = ADC_ReadCh(10);	// OUT_V
 	//*pbuf++ = ADC_ReadCh(11);	// INPUT_A
@@ -232,27 +237,29 @@ void	cmd_dac_test(byte cmd, int value)
 	buf[2] = 0;	//dummy
 	buf[3] = 0;	// dummy
 
+
 	pdata = (byte *) &value;
-	dac1 = pdata[0] + (pdata[1] * 256);
-#if 1	
-	v = (double) dac1;
-	a = 4095.0 * v / Vref;
-	dac_value[0] = (uint16_t) (a / 10000);
-#endif
-	dac2 = pdata[2] + (pdata[3] * 256);
-#if 1
-	v = (double) dac2;
-	a = 4095.0 * v / Vref;
-	dac_value[1] = (uint16_t) (a / 10000);
-#endif
+	if ( value & 0x8000) {
+		dac1 =  pdata[0]  + (( pdata[1] & 0x0f) * 256);		
+		dac_value[2] = (uint16_t) dac1;
 
-	//dac_value[0] = dac1;
+		dac2 = pdata[2] + ( ( pdata[3] & 0x0f)  * 256);
+		dac_value[3] = (uint16_t) dac2;
+		//printf(" ADV: %d, %d\n", value, dac_value[2], dac_value[3]);
+	}
+	else {
+		dac1 = pdata[0] + (pdata[1] * 256);		
+		dac_value[0] = (uint16_t) dac1;
 
-	//dac_value[1] = dac2;
-	printf("DAC: %x : %d, %d\n", value, dac1, dac2);
-	printf("ADV: %d, %d\n", value, dac_value[0], dac_value[1]);
+		dac2 = pdata[2] + (pdata[3] * 256);
+		dac_value[1] = (uint16_t)  dac2; 
+		//printf(" ADV: %d, %d\n", dac_value[0], dac_value[1]);
+	}
+
+	//printf("DAC: %x, %d, %d: %d, %d\n", value, dac_value[0], dac_value[1], dac_value[2], dac_value[3]);	
 
 	send_test_frame(buf);
+	dac_test();
 
 	#if 0
 	u16 addr;
@@ -302,16 +309,6 @@ void	cmd_led_test(byte cmd, byte mode)
 	}
 	else if ( mode == 2 ) {	// turn off rect_off
 		rect_test_on(0);
-	}
-	else if ( mode == 1 ) {	// ON red led
-		//LED_test_on();
-		GPIO_SetBits(GPIO_LED_RUN , LED_RUN);
-		GPIO_ResetBits(GPIO_LED_FAIL , LED_FAIL);
-	}
-	else {	// ON Green LED
-		//LED_test_off();
-		GPIO_ResetBits(GPIO_LED_RUN , LED_RUN);
-		GPIO_SetBits(GPIO_LED_FAIL , LED_FAIL);
 	}
 	send_test_frame(buf);
 }
@@ -363,7 +360,7 @@ void	cmd_button_test(byte cmd, byte mode)
 	}
 
 	*pbuf = status;
-	printf("INPUT TEST:%d\n", status);
+	printf("INPUT TEST:%x\n", status);
 
 	send_test_frame(buf);
 
@@ -374,7 +371,7 @@ void	cmd_output_test(byte cmd, byte mode)
 {
 	byte	buf[10];
 	int 	i;
-	byte status;
+	uint16_t *pbuf, status;
 	IO_STS *port;
 
 	buf[0] = cmd ;	// same to the command
@@ -384,11 +381,13 @@ void	cmd_output_test(byte cmd, byte mode)
 
 	printf("OUTPUT Test:0x%x\n", mode);
 
+	pbuf = (uint16_t *) &buf[4];
 
-	status = mode;
+	if ( mode ) status = 0xffff;
+	else status = 0;
 	out_status = status;
 	port = outputs;
-	for ( i = 0; i < 8; i++) {
+	for ( i = 0; i < 16; i++) {
 		if ( port->group == 0 ) {
 			break;
 		}
@@ -399,7 +398,7 @@ void	cmd_output_test(byte cmd, byte mode)
 		port++;
 	}
 
-	buf[4] = status;
+	*pbuf = status;
 
 	
 	send_test_frame(buf);
@@ -422,6 +421,8 @@ void	cmd_relay_test(byte cmd, byte mode)
 		relay_on(2);
 		relay_on(3);
 		relay_on(4);	
+		relay_on(5);
+		relay_on(6);	
 		sr_off();
 		GPIO_SetBits(GPIO_RECT_ON , RECT_ON);	// rect(1)
 	}
@@ -430,6 +431,8 @@ void	cmd_relay_test(byte cmd, byte mode)
 		relay_off(2);
 		relay_off(3);
 		relay_off(4);	
+		relay_off(5);
+		relay_off(6);
 		sr_on();
 		GPIO_ResetBits(GPIO_RECT_ON , RECT_ON);	// rect(0);
 	}
@@ -640,11 +643,11 @@ void	cmd_info_set(byte cmd, byte mode)
 
 void	cmd_out_sel(byte cmd, byte mode)
 {
-	printf("OUT SEL: %x\n", mode);
+	printf("AC FAIL: %x\n", mode);
 	if ( mode ) {
-		GPIO_SetBits(GOUT_OUTSEL, OUTSEL_PIN);
+		GPIO_SetBits(GPIO_AC_FAIL, AC_FAIL_PIN);
 	}
-	else GPIO_ResetBits(GOUT_OUTSEL, OUTSEL_PIN);
+	else GPIO_ResetBits(GPIO_AC_FAIL, AC_FAIL_PIN);
 }
 
 void diagnosis(byte command) 

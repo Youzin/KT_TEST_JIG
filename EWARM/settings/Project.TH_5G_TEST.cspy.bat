@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\TH_TEST_DRV\EWARM\settings\Project.TH_5G_TEST.general.xcl" --backend -f "H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\TH_TEST_DRV\EWARM\settings\Project.TH_5G_TEST.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\settings\Project.TH_5G_TEST.general.xcl" --backend -f "H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\settings\Project.TH_5G_TEST.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\TH_TEST_DRV\EWARM\settings\Project.TH_5G_TEST.general.xcl" "--debug_file=%~1" --backend -f "H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\TH_TEST_DRV\EWARM\settings\Project.TH_5G_TEST.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\settings\Project.TH_5G_TEST.general.xcl" "--debug_file=%~1" --backend -f "H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\settings\Project.TH_5G_TEST.driver.xcl" 
 
 @echo off 
 :end

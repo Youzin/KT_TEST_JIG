@@ -585,7 +585,7 @@ void	do_test_mode()
 	command = get_command();
 	if ( command ) {
 		rabm_process_command(command);
-		display_status();
+		//display_status();
 	}
 	//if ( !(time10ms % 20) ) GPIO_WriteBit(GPIO_SYSTEM_LED, SYSTEM_LED, (BitAction)(1 - GPIO_ReadOutputDataBit(GPIO_SYSTEM_LED, SYSTEM_LED)));
 }
@@ -1229,9 +1229,9 @@ void	set_alarm_mode(int mode)	// CHG_REF
 
 	printf("ALARM_MODE : %d\n",  mode);
 	if ( mode == 0  ) {
-		GPIO_SetBits(GOUT_OUTSEL, OUTSEL_PIN);
+		GPIO_SetBits(GPIO_ETH_SEL, ETH_SEL_PIN);
 	}
-	else GPIO_ResetBits(GPIOC, GPIO_Pin_2);
+	else GPIO_ResetBits(GPIO_ETH_SEL, ETH_SEL_PIN);
 
 	//send_op_set();
 }
