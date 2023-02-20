@@ -140,8 +140,8 @@ PD2 : Relay2, GPIO output, ext. pulldown
 #define	GPIO_RECT_ON	GPIOA
 #define	RECT_ON		GPIO_Pin_2
 
-#define	GPIO_DI_BAT_SW		GPIOA
-#define	DI_BAT_SW		GPIO_Pin_3
+#define	GPIO_BAT_SW		GPIOA
+#define	BAT_SW		GPIO_Pin_3
 
 #define GPIO_WD			GPIOA
 #define WD_PIN 			GPIO_Pin_15
@@ -296,9 +296,50 @@ void	dprintf(char *, ...);
 #define GPIO_Pin_CAN_TX			GPIO_Pin_12
 #define CANx	CAN1
 
+
+
 #define CAN_READ_BMS		0x1800c001	// host = 0x00, bms = 0x01
 #define CAN_RSP_BMS			0x1000c080
 
-void Init_TxMessage();
 
+#define BMS_KT	1
+#define BMS_LGT	2
+
+#define BMS_ALARM1 0x0000007F
+#define BMS_ALARM2 0xF90701FF
+
+
+#define BMS_ID	0x001
+
+#define BMS_TX_REQ	BMS_ID
+#define BMS_TX_CL	0x40E
+
+#define BMS_RX_VERSION		(0x020 + BMS_ID)
+#define BMS_RX_ALARM		(0x040 + BMS_ID)
+#define BMS_RX_STATE		(0x060 + BMS_ID)
+#define BMS_RX_CELL			(0x080 + BMS_ID)
+
+#define BMS_RX_LVD			0x40E
+
+#define BMS_REQ_VERSION		0x02
+#define BMS_REQ_ALARM		0x06
+#define BMS_REQ_STATE		0x04
+#define BMS_REQ_CELL			0x08
+
+
+#define BMS_REQ_CL			0x0A
+
+
+#define BMS_PARA_CURRENT_LIMIT	0x0A
+
+void Init_TxMessage();
+void bms_send_resp(uint16_t req);
+void check_can_type();
+
+void CAN_reset();
+void CAN_Config();
+void config_sys_type(uint8_t type);
+
+
+extern uint16_t bms_type;
 

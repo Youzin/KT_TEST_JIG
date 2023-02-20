@@ -488,16 +488,30 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
 	c = 1-c;
 #endif
 
-  CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
-  if ((RxMessage.ExtId == CAN_READ_BMS ))	// FOR LOOPBACK TEST
-  //if (RxMessage.ExtId == CAN_RSP_BMS )   // 0x1000c080))		// CAN RX CODE
-  { 	
+if ( bms_type == BMS_KT ) {
+	CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
+	if ((RxMessage.ExtId == CAN_READ_BMS ))	// FOR LOOPBACK TEST
+	//if (RxMessage.ExtId == CAN_RSP_BMS )   // 0x1000c080))		// CAN RX CODE
+	{ 	
 		//bat_can_v =  *(uint16_t *) &RxMessage.Data[0];
 		//bat_can_a =  *(uint16_t *) &RxMessage.Data[2];
 	    //bat_can_sts = *(uint16_t *) &RxMessage.Data[4];
 		//bat_can_prt = *(uint16_t *) &RxMessage.Data[6];
 		bat_can_flag = 1;
-	  }
+	}
+}
+else if ( bms_type == BMS_LGT ) {
+	CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
+
+	if ( RxMessage.StdId > 0 && RxMessage.StdId <= 0x11) {
+		bat_can_flag =   RxMessage.Data[0];
+	}
+	else if ( RxMessage.StdId == BMS_TX_CL ) {
+		bat_can_flag =   RxMessage.Data[0];
+		bms.c_limit = RxMessage.Data[4] * 256 + RxMessage.Data[5] ;
+	}
+
+}
 
   CAN_ClearITPendingBit(CAN1,CAN_IT_FMP0);  
 }

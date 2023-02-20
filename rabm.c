@@ -14,6 +14,7 @@
 ***************************************************************
 */
 
+// 2021 0420 : BAT_SW(DI) -> BAT_CONT(DO) for SKT 5G USB-C
 //#define	BAT_TEST 1
 
 
@@ -208,7 +209,7 @@ uint8_t	SERIAL_NO[20]  ;
 
 
 int		hw_version = 0x01000000;
-int		fw_version = 0x01000000;	// 48V 1.0.0
+int		fw_version = 0x03000000;	// 48V 1.0.0
 
 
 //byte 	USART_line_buffer[256];
@@ -1749,7 +1750,9 @@ float	BCV_Read()
 	float	dcv;
 
 	//v = ADC_ReadCh(14);
+#ifdef KT_JIG
 	if ( adv.batv > adv.dcv ) adv.batv = adv.dcv;
+#endif
 	dcv = (float) (adv.batv / 10.0);
 
 	dcv = dcv * Vref / 4095.0;
@@ -2059,7 +2062,7 @@ float	read_bat_V()
 #if 1
 	float bat_v;
 	bat_v = BCV_Read(); // + rect_sts.ov_offset ;
-	return bat_v + rect_sts.ov_offset;	// 180814  offsetº¸Á¤ ;
+	return bat_v + rect_sts.ov_offset;	// 180814  offsetï¿½ï¿½ï¿½ï¿½ ;
 #endif	
 
 	//return rect_sts.output_V;
@@ -2115,7 +2118,7 @@ float	read_rec_T()
 
 int	read_bat_NFB()
 {
-	return GPIO_ReadInputDataBit(GPIO_DI_BAT_SW, DI_BAT_SW);
+	return GPIO_ReadInputDataBit(GPIO_BAT_SW, BAT_SW);
 }
 
 
@@ -3132,26 +3135,42 @@ void check_bat_sts()
 	op_sts.bat_sts = 0;
 	
 	//return;
-
-	if ( bat_can_flag  ) {
-		//printf("CAN RX \n");
-		bat_can_flag = 0;
-		can_tx_count = 0;
-		bms.dis = 0;
-		test_TxMessage();	
-		CAN_Transmit(CANx, &TxMessage);
-		//printf("BMS STS %x %x\n", alarm_sts.cell_fail,  test_value);
-	}
-	else {
-		can_tx_count++;
-		if ( can_tx_count > 5 ) {
-			bms.dis = 1;
+	if ( bms_type == BMS_KT ) {
+		if ( bat_can_flag  ) {
+			//printf("CAN RX \n");
+			bat_can_flag = 0;
+			can_tx_count = 0;
+			bms.dis = 0;
+			test_TxMessage();	
+			CAN_Transmit(CANx, &TxMessage);
+			//printf("BMS STS %x %x\n", alarm_sts.cell_fail,  test_value);
 		}
+		else {
+			can_tx_count++;
+			if ( can_tx_count > 5 ) {
+				bms.dis = 1;
+			}
+		}
+	}
+	else if ( bms_type == BMS_LGT ) {
+		if ( bat_can_flag  ) {
+			printf("CAN RX:%x \n", bat_can_flag);
+			bms_send_resp(bat_can_flag);
+			bat_can_flag = 0;
+			can_tx_count = 0;
+			bms.dis = 0;
+		}
+		else {
+			can_tx_count++;
+			if ( can_tx_count > 5 ) {
+				bms.dis = 1;
+		}
+	}
 
 #if 1
-		if ( can_tx_count > 5) {
+		if ( can_tx_count > 100) {
 			CAN_reset();
-			//printf("RESET CAN");
+			printf("RESET CAN");
 			can_tx_count = 0;
 		}
 #endif		
@@ -3752,6 +3771,7 @@ void	sys_info_init()
 	sys_info.serial_no = SERIAL_NO;
 
 	sys_info.ip_addr = psu_ip;
+	sys_info.type = TYPE_5G;
 
 }
 
@@ -4045,7 +4065,7 @@ skip_output:
 	ip_read_psu_name(user_psu_name);
 
 	//power_back_time = get_time_counter();
-	if ( GPIO_ReadInputDataBit(GPIO_DI_BAT_SW, DI_BAT_SW) ) {		// BAT SW OFF
+	if ( GPIO_ReadInputDataBit(GPIO_BAT_SW, BAT_SW) ) {		// BAT SW OFF
 		bat_sw_state  = 0;	
 	}
 	else bat_sw_state = 1;
@@ -4844,6 +4864,7 @@ void	rabm_main()
      
 	alarm_timer_init();
 	vref_init();
+	sys_info_init();
 	//rabm_init();
 	//set_alarm_port(0);
 	ADC_Configuration_scanmode();
@@ -4861,7 +4882,6 @@ void	rabm_main()
 	time3ms = 0;
 
 	time_tmp = time10ms;
-	printf("KT TH 5G TESTER\n");
 	DAC_WriteCh(3, 3131);	// Default BatA = 2.0A
 
 	while (1) {
@@ -4870,6 +4890,7 @@ void	rabm_main()
 		}
 		time_tmp = time10ms;
 
+		check_can_type();
 		avg_ref();
 		do_test_mode();
 		//dac_test();
@@ -4884,8 +4905,9 @@ void	rabm_main()
 			
 		}
 		
-		if ( time10ms % 203 == 1 ) {			
+		if ( time10ms % 11 == 1 ) {			
 			check_bat_sts();
+			//printf("ADC:%d, %d\n", adc_dr[1], adv.batv);
 		}
 
 		if ( A1_flag == 1 ) {

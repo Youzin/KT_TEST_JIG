@@ -39,13 +39,19 @@ CMD_RELAY_TEST = 0x86, CMD_EPROM_TEST = 0x87;
 
 #define CMD_ALL_TEST  0xa0
 
+
 IO_STS outputs[16] = {
 	{ GPIO_AC_FAIL, AC_FAIL_PIN},
 	{ GPIO_PWR_ARM, PWR_ARM_PIN},
+	{ GPIO_BAT_SW, BAT_SW},
+	{ GPIO_BAT_NFB, BAT_NFB_PIN},
+	{ GPIO_BAT_CHG, BAT_CHG_PIN},
+	{ GPIO_BAT_DCHG, BAT_DCHG_PIN},	
+	{ GPIO_BAT_PWR, BAT_PWR_PIN},
 	{ NULL, 0 },
 };
 
-IO_STS inputs[16] = {
+IO_STS inputs[20] = {
 	{ GPIO_RELAY1, RELAY1_PIN},
 	{ GPIO_RELAY2, RELAY2_PIN},
 	{ GPIO_RELAY3, RELAY3_PIN},
@@ -55,14 +61,14 @@ IO_STS inputs[16] = {
 	{ GPIO_SR_ON, SR_ON_PIN},
 	{ GPIO_RECT_CON, RECT_CON_PIN},
 	{ GPIO_PFC_TH, PFC_TH_PIN},
-	{GPIO_RECT_ON, RECT_ON},
-	{GPIO_LOAD_ON, LOAD_ON_PIN},
+	{ GPIO_RECT_ON, RECT_ON},
+	{ GPIO_LOAD_ON, LOAD_ON_PIN},
 	{ GPIO_PFC1, PFC1_PIN},
 	{ GPIO_PFC2, PFC2_PIN},
 	{ GPIO_PFC3, PFC3_PIN},
 	{ GPIO_PFC4, PFC4_PIN},		
-	{0, 0},
-	
+	{ GPIO_BAT_SW, BAT_SW},
+	{0, 0},	
 };
 
 void	send_test_frame(byte *buf)
@@ -211,7 +217,11 @@ void	cmd_adc_test(byte cmd, byte mode)
 	*pbuf++ = adv.dca;
 	*pbuf++ = adv.rect;
 	*pbuf++ = adv.batt;
-	*pbuf = adv.refv;
+#ifdef KT_JIG
+
+#else
+	*pbuf = adv.batv;
+#endif
 
 	//printf("ADC: %d %d", adv.dcv/10,  adv.dca/10);
 	//printf(" %d %d %d\n", adv.rect,  adv.batt, adv.refv);
@@ -360,7 +370,7 @@ void	cmd_button_test(byte cmd, byte mode)
 	}
 
 	*pbuf = status;
-	printf("INPUT TEST:%x\n", status);
+	printf("INPUT TEST:0X%04X\n", status);
 
 	send_test_frame(buf);
 
@@ -378,8 +388,6 @@ void	cmd_output_test(byte cmd, byte mode)
 	buf[1] = 1; 	// no of test result
 	buf[2] = mode;	//mode
 	buf[3] = 0; // dummy
-
-	printf("OUTPUT Test:0x%x\n", mode);
 
 	pbuf = (uint16_t *) &buf[4];
 
@@ -399,6 +407,7 @@ void	cmd_output_test(byte cmd, byte mode)
 	}
 
 	*pbuf = status;
+	printf("OUTPUT Test:0X%04X\n", status);
 
 	
 	send_test_frame(buf);
@@ -621,6 +630,30 @@ void	cmd_test_mode(byte cmd, byte mode)
 	send_test_frame(buf);
 }
 
+extern uint8_t rx_frame[];
+void	cmd_can_set(byte cmd, byte mode)
+{
+	byte	buf[20], *p;
+
+	buf[0] = cmd ;	// same to the command
+	buf[1] = 0; 	// no of test result
+	buf[2] = mode;	//dummy
+	buf[3] = 0; // dummy
+
+	p = rx_frame;
+	printf("CAN TEST:%d, %d %d %d %d\n", mode, p[0], p[1]);
+
+	if ( mode == 1 ) {
+		bms.sts = 0xaa73;
+	}
+	else if (mode == 2 ) {
+		bms.sts = 0x1234;
+	}
+	else bms.sts = 0xBAB0;
+
+	send_test_frame(buf);
+}
+
 
 void	cmd_info_set(byte cmd, byte mode)
 {
@@ -648,6 +681,18 @@ void	cmd_out_sel(byte cmd, byte mode)
 		GPIO_SetBits(GPIO_AC_FAIL, AC_FAIL_PIN);
 	}
 	else GPIO_ResetBits(GPIO_AC_FAIL, AC_FAIL_PIN);
+}
+
+
+void	cmd_set_type(byte cmd, byte mode)
+{
+	uint8_t *type;
+
+     type = get_data(1, 2);
+     printf("SYS_TYPE: %x\n", *type);
+     sys_info.type = *type;
+	 config_sys_type(sys_info.type);
+
 }
 
 void diagnosis(byte command) 
@@ -719,11 +764,17 @@ void diagnosis(byte command)
 		case CMD_BOOT0_TEST:
 			cmd_boot0_test(command,mode);
 			break;
+		case SET_TYPE:			
+			cmd_set_type(command, mode);
+			break;
 		case CMD_OUTPUT_TEST:
 			cmd_output_test(command,mode);
 			break;
 		case CMD_OUT_SEL:
 			cmd_out_sel(command, mode);
+			break;
+		case CMD_CAN_SET:
+			cmd_can_set(command, mode);
 			break;
 
 		default :

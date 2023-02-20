@@ -59,7 +59,7 @@ extern int fw_version;
 	//Reset_W5200();	// WIZ_RESET not available
 
 	//printf("\n\n====================================\n");
-	printf(" TH-5G PSU \n");
+	printf("TH-5G PSU USB-C \n");
   	printf("YooHa ELEC. @ %s %s\n\r", __DATE__, __TIME__);
 	printf("FW %08X \n\r", fw_version);
   	printf("====================================\n");

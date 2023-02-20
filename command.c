@@ -977,13 +977,15 @@ void	send_system_info()
 	memcpy(sys_frame.hw_version, sys_info.hw_version, VERSION_SIZE);
 	memcpy(sys_frame.fw_version, sys_info.fw_version, VERSION_SIZE);
 	memcpy(sys_frame.serial_no, sys_info.serial_no, VERSION_SIZE);
-
+#if 0
 	memcpy(sys_frame.ip_addr, sys_info.ip_addr, 4);
 	memcpy(sys_frame.ip_save, saved_ip, 4);	
 	sys_frame.run_id = management_id;
 	sys_frame.saved_id = *(u32 *) saved_management_id;
 	memcpy(sys_frame.run_mac, psu_mac, 6);
 	memcpy(sys_frame.save_mac, sys_info.s_mac, 6);
+#endif	
+	sys_frame.type = sys_info.type;
 	
 	send_frame((byte *)&sys_frame, sizeof(F_SYSTEM_INFO));
 }

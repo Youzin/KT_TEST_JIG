@@ -6,6 +6,10 @@
 #include	"uart.h"
 #include	"alarmcomm.h"
 
+#define TYPE_5G	0
+#define TYPE_5G_NEW	1
+#define TYPE_5G_C	2
+
 #define	VERSION_SIZE	12
 
 #define BAT_STS_CHG	0x02
@@ -243,6 +247,7 @@ typedef enum {
     SYSTEM_RESET = 0x89,
     SET_HW_VERSION= 0x8A,
     SET_SN = 0x8B,
+    SET_TYPE,
 
 
 	CMD_ADC_TEST= 0xB0,	// test or debug commands
@@ -265,6 +270,7 @@ typedef enum {
     CMD_SET_MAC = 0xc1,			//
     CMD_OUTPUT_TEST = 0xc2,		// 0xC2
     CMD_OUT_SEL,
+    CMD_CAN_SET = 0xd0,
 } PC_COMMAND ;
 
 
@@ -366,8 +372,9 @@ typedef  struct {
 	u32		run_id;
 	u32		saved_id;
 	//u16		dummy;
-	byte	run_mac[6];
-	byte	save_mac[6];
+	//byte	run_mac[6];
+	//byte	save_mac[6];
+	byte 	type;
 
 } F_SYSTEM_INFO;
 
@@ -596,6 +603,7 @@ typedef  struct {
 
 	byte	*ip_addr;
 	byte	s_mac[6];
+	byte	type;
 
 } SYSTEM_INFO;
 
@@ -780,6 +788,18 @@ typedef struct {
 	uint16_t	sts;
 	uint16_t	prt;
 	uint16_t 	dis;
+	uint16_t 	soc;
+	uint16_t 	hw_ver;
+	uint16_t	sw_ver;
+	uint16_t 	soh;
+	uint16_t	temp;
+	uint16_t 	fet_temp;
+	uint32_t	alarm1;
+	uint32_t	alarm2;
+	uint16_t	c_limit;
+	uint16_t	lvd;
+	uint16_t 	ext;
+	uint8_t		type;
 } BMS_STS_T;
 
 
@@ -976,6 +996,8 @@ extern	SYSTEM_INFO		sys_info;
 extern	int	reset_type;
 extern  uint8_t SERIAL_NO[];
 extern  BMS_STS_T	bms;
+extern uint16_t bat_can_sts, bat_can_prt, bat_can_v, bat_can_a, bat_can_flag;
+
 
 
 char *get_string2(int arg);

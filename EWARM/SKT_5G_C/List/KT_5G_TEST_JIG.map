@@ -1,0 +1,1392 @@
+###############################################################################
+#
+# IAR ELF Linker V7.70.1.11437/W32 for ARM                20/Apr/2021  16:02:23
+# Copyright 2007-2016 IAR Systems AB.
+#
+#    Output file  =  
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Exe\KT_5G_TEST_JIG.out
+#    Map file     =  
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\List\KT_5G_TEST_JIG.map
+#    Command line =  
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\AlarmComm.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\command.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\config.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\debug.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\dhcp.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\I2CRoutines.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\loopback.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\main.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\md5.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\misc.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\ping.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\rabm.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\socket.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\sockutil.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\SPI2.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\startup_stm32f10x_hd.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_adc.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_bkp.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_can.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_dac.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_dbgmcu.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_dma.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_exti.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_flash.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_gpio.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_i2c.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_it.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_iwdg.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_pwr.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_rcc.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_rtc.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_spi.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_tim.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\stm32f10x_usart.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\system_stm32f10x.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\telnet.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\Time.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\util.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\util_DHCP.o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj\w5500.o
+#        --redirect _Printf=_PrintfFull --redirect _Scanf=_ScanfFull -o
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Exe\KT_5G_TEST_JIG.out
+#        --map
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\List\KT_5G_TEST_JIG.map
+#        --config
+#        H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\stm32f10x_flash_IAP.icf
+#        --semihosting --entry __iar_program_start --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor                     = *
+__Heap_Handler                = Basic
+__SystemLibrary               = DLib
+__dlib_dynamic_initialization = normal
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at 0x08000000 { ro section .intvec };
+"P1":  place in [from 0x08000000 to 0x0803ffff] { ro };
+"P2":  place in [from 0x20000000 to 0x2000bfff] { rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+  Section             Kind        Address    Size  Object
+  -------             ----        -------    ----  ------
+"A0":                                       0x130
+  .intvec             ro code  0x08000000   0x130  startup_stm32f10x_hd.o [1]
+                             - 0x08000130   0x130
+
+"P1":                                      0xc456
+  .text               ro code  0x08000130  0x2110  rabm.o [1]
+  .text               ro code  0x08002240    0x24  printf.o [3]
+  .text               ro code  0x08002264   0x16e  util.o [1]
+  .text               ro code  0x080023d2     0xa  xsprout.o [3]
+  .text               ro code  0x080023dc   0x260  stm32f10x_gpio.o [1]
+  .text               ro code  0x0800263c  0x16b8  config.o [1]
+  .text               ro code  0x08003cf4   0x134  Time.o [1]
+  .text               ro code  0x08003e28    0x10  stm32f10x_iwdg.o [1]
+  .text               ro code  0x08003e38    0x4e  FltToDbl.o [4]
+  .text               ro code  0x08003e88   0x1a2  DblMul.o [4]
+  .text               ro code  0x0800402c    0x58  DblToI32.o [4]
+  .text               ro code  0x08004084    0x9c  stm32f10x_rtc.o [1]
+  .text               ro code  0x08004120    0xb6  localtim.o [3]
+  .text               ro code  0x080041d8    0x44  FltToS32.o [4]
+  .text               ro code  0x0800421c    0x30  I32ToDbl.o [4]
+  .text               ro code  0x0800424c    0x90  DblToFlt.o [4]
+  .text               ro code  0x080042dc    0xfc  FltDiv.o [4]
+  .text               ro code  0x080043d8    0x24  FltCmpLe.o [4]
+  .text               ro code  0x080043fc    0xe8  DblAdd.o [4]
+  .text               ro code  0x080044e4   0x256  DblDiv.o [4]
+  .text               ro code  0x0800473c    0x32  I32ToFlt.o [4]
+  .text               ro code  0x08004770    0xd8  FltMul.o [4]
+  .text               ro code  0x08004848    0xe6  FltSub.o [4]
+  .text               ro code  0x08004930    0x84  FltAdd.o [4]
+  .text               ro code  0x080049b4    0x1c  FltCmpEq.o [4]
+  .text               ro code  0x080049d0    0x24  FltCmpGe.o [4]
+  .text               ro code  0x080049f4  0x15e0  command.o [1]
+  .text               ro code  0x08005fd4   0x65c  AlarmComm.o [1]
+  .text               ro code  0x08006630   0x56c  stm32f10x_can.o [1]
+  .text               ro code  0x08006b9c    0x34  sprintf.o [3]
+  .text               ro code  0x08006bd0    0x76  ABImemcpy_unaligned.o [5]
+  .text               ro code  0x08006c48    0x44  strcpy_unaligned.o [5]
+  .text               ro code  0x08006c8c     0x8  atoi.o [3]
+  .text               ro code  0x08006c94    0xee  I64DivMod.o [5]
+  .text               ro code  0x08006d84  0x118a  xprintffull.o [3]
+  .text               ro code  0x08007f10    0x2c  vfprintf.o [3]
+  .text               ro code  0x08007f3c   0x394  stm32f10x_rcc.o [1]
+  .text               ro code  0x080082d0    0x9c  misc.o [1]
+  .text               ro code  0x0800836c   0x19c  stm32f10x_dma.o [1]
+  .text               ro code  0x08008508   0x26c  stm32f10x_adc.o [1]
+  .text               ro code  0x08008774   0x1e4  stm32f10x_tim.o [1]
+  .text               ro code  0x08008958    0x18  stm32f10x_dac.o [1]
+  .text               ro code  0x08008970   0x1be  stm32f10x_flash.o [1]
+  .text               ro code  0x08008b30   0x294  stm32f10x_usart.o [1]
+  .text               ro code  0x08008dc4   0x218  stm32f10x_i2c.o [1]
+  .text               ro code  0x08008fdc    0xe0  stm32f10x_spi.o [1]
+  .text               ro code  0x080090bc    0xd0  mktime.o [3]
+  .text               ro code  0x0800918c     0x2  xtls.o [3]
+  .text               ro code  0x08009190    0x54  setlocale.o [3]
+  .text               ro code  0x080091e4     0xa  getzone.o [3]
+  .text               ro code  0x080091ee    0x42  xgettime.o [3]
+  .text               ro code  0x08009230    0x88  xstol.o [3]
+  .text               ro code  0x080092b8   0x188  xttotm.o [3]
+  .text               ro code  0x08009440   0x180  DblSub.o [4]
+  .text               ro code  0x080095c0   0x968  debug.o [1]
+  .text               ro code  0x08009f28    0x5c  ping.o [1]
+  .text               ro code  0x08009f84   0xa60  md5.o [1]
+  .text               ro code  0x0800a9e4    0x62  memcmp_unaligned.o [5]
+  .text               ro code  0x0800aa48    0x36  strlen.o [5]
+  .text               ro code  0x0800aa80    0x2e  DblCmpGe.o [4]
+  .text               ro code  0x0800aaae    0x1c  strcat.o [3]
+  .text               ro code  0x0800aacc   0x198  xstoul.o [3]
+  .text               ro code  0x0800ac64     0x2  I64DivZer.o [5]
+  .text               ro code  0x0800ac66    0x20  xmbtowc.o [3]
+  .text               ro code  0x0800ac88    0x16  strchr.o [5]
+  .text               ro code  0x0800aca0    0x58  memchr.o [5]
+  .text               ro code  0x0800acf8     0xa  xmbcurmax.o [3]
+  .text               ro code  0x0800ad04    0xb0  xxmemxmalloc.o [3]
+  .text               ro code  0x0800adb4    0x1a  xwctomb.o [3]
+  .text               ro code  0x0800add0    0x80  xxmemxfree.o [3]
+  .text               ro code  0x0800ae50    0x44  xdnorm.o [4]
+  .text               ro code  0x0800ae94    0x2e  DblCmpLe.o [4]
+  .text               ro code  0x0800aec4   0x10c  xdscale.o [4]
+  .text               ro code  0x0800afd0    0x6c  localeconv.o [3]
+  .text               ro code  0x0800b03c     0xe  div.o [3]
+  .text               ro code  0x0800b04a     0x4  xsyslock_nop.o [3]
+  .text               ro code  0x0800b04e    0x14  isxxx.o [3]
+  .text               ro code  0x0800b064     0xc  errno.o [3]
+  .text               ro code  0x0800b070   0x134  xisdst.o [3]
+  .text               ro code  0x0800b1a4    0x88  w5500.o [1]
+  .text               ro code  0x0800b22c    0x66  ABImemset.o [5]
+  .text               ro code  0x0800b292    0x14  tolower.o [3]
+  .text               ro code  0x0800b2a8    0x60  xencoding_sb.o [3]
+  .text               ro code  0x0800b308    0x2c  xgetmemchunk.o [3]
+  .text               ro code  0x0800b334    0x14  xlocale_c.o [3]
+  .text               ro code  0x0800b348   0x15e  xgetdst.o [3]
+  .text               ro code  0x0800b4a6     0xc  xlocale_c.o [3]
+  .text               ro code  0x0800b4b4   0x338  stm32f10x_it.o [1]
+  .text               ro code  0x0800b7ec    0x38  stm32f10x_exti.o [1]
+  .text               ro code  0x0800b824   0x158  system_stm32f10x.o [1]
+  .text               ro code  0x0800b97c    0x78  lz77_init_single.o [5]
+  .text               ro code  0x0800b9f4    0x74  main.o [1]
+  .rodata             const    0x0800ba68    0x50  AlarmComm.o [1]
+  .rodata             const    0x0800bab8    0x40  md5.o [1]
+  .text               ro code  0x0800baf8    0x40  zero_init3.o [5]
+  .rodata             const    0x0800bb38    0x2c  AlarmComm.o [1]
+  .rodata             const    0x0800bb64    0x2c  AlarmComm.o [1]
+  .rodata             const    0x0800bb90    0x28  AlarmComm.o [1]
+  .rodata             const    0x0800bbb8    0x28  command.o [1]
+  .rodata             const    0x0800bbe0    0x28  command.o [1]
+  .rodata             const    0x0800bc08    0x28  main.o [1]
+  .text               ro code  0x0800bc30    0x28  data_init.o [5]
+  .rodata             const    0x0800bc58    0x24  AlarmComm.o [1]
+  .rodata             const    0x0800bc7c    0x24  command.o [1]
+  .rodata             const    0x0800bca0    0x24  command.o [1]
+  .rodata             const    0x0800bcc4    0x24  debug.o [1]
+  .iar.init_table     const    0x0800bce8    0x20  - Linker created -
+  .rodata             const    0x0800bd08    0x20  AlarmComm.o [1]
+  .rodata             const    0x0800bd28    0x1c  AlarmComm.o [1]
+  .rodata             const    0x0800bd44    0x1c  command.o [1]
+  .rodata             const    0x0800bd60    0x1c  debug.o [1]
+  .rodata             const    0x0800bd7c    0x1c  rabm.o [1]
+  .rodata             const    0x0800bd98    0x1c  rabm.o [1]
+  .text               ro code  0x0800bdb4    0x1a  cmain.o [5]
+  .text               ro code  0x0800bdce     0x4  low_level_init.o [3]
+  .text               ro code  0x0800bdd2     0x4  exit.o [3]
+  .text               ro code  0x0800bdd8     0xa  cexit.o [5]
+  .text               ro code  0x0800bde4    0x14  exit.o [6]
+  .rodata             const    0x0800bdf8    0x18  AlarmComm.o [1]
+  .rodata             const    0x0800be10    0x18  command.o [1]
+  .rodata             const    0x0800be28    0x18  main.o [1]
+  .rodata             const    0x0800be40    0x18  rabm.o [1]
+  .rodata             const    0x0800be58    0x18  rabm.o [1]
+  .rodata             const    0x0800be70    0x18  rabm.o [1]
+  .rodata             const    0x0800be88    0x18  rabm.o [1]
+  .rodata             const    0x0800bea0    0x18  rabm.o [1]
+  .text               ro code  0x0800beb8    0x18  xfprout.o [3]
+  .text               ro code  0x0800bed0    0x16  xprout.o [3]
+  .text               ro code  0x0800bee8     0xc  putchar.o [3]
+  .rodata             const    0x0800bef4    0x14  AlarmComm.o [1]
+  .rodata             const    0x0800bf08    0x14  AlarmComm.o [1]
+  .rodata             const    0x0800bf1c    0x14  AlarmComm.o [1]
+  .rodata             const    0x0800bf30    0x14  AlarmComm.o [1]
+  .rodata             const    0x0800bf44    0x14  command.o [1]
+  .rodata             const    0x0800bf58    0x14  command.o [1]
+  .rodata             const    0x0800bf6c    0x14  command.o [1]
+  .rodata             const    0x0800bf80    0x14  command.o [1]
+  .rodata             const    0x0800bf94    0x14  command.o [1]
+  .rodata             const    0x0800bfa8    0x14  command.o [1]
+  .rodata             const    0x0800bfbc    0x14  debug.o [1]
+  .rodata             const    0x0800bfd0    0x14  debug.o [1]
+  .rodata             const    0x0800bfe4    0x14  main.o [1]
+  .rodata             const    0x0800bff8    0x14  ping.o [1]
+  .rodata             const    0x0800c00c    0x14  rabm.o [1]
+  .rodata             const    0x0800c020    0x14  rabm.o [1]
+  .rodata             const    0x0800c034    0x14  rabm.o [1]
+  .rodata             const    0x0800c048    0x14  rabm.o [1]
+  .rodata             const    0x0800c05c    0x14  rabm.o [1]
+  .rodata             const    0x0800c070    0x14  rabm.o [1]
+  .rodata             const    0x0800c084    0x14  rabm.o [1]
+  .rodata             const    0x0800c098    0x14  rabm.o [1]
+  .rodata             const    0x0800c0ac    0x10  AlarmComm.o [1]
+  .rodata             const    0x0800c0bc    0x10  command.o [1]
+  .rodata             const    0x0800c0cc    0x10  command.o [1]
+  .rodata             const    0x0800c0dc    0x10  config.o [1]
+  .rodata             const    0x0800c0ec    0x10  config.o [1]
+  .rodata             const    0x0800c0fc    0x10  debug.o [1]
+  .rodata             const    0x0800c10c    0x10  debug.o [1]
+  .rodata             const    0x0800c11c    0x10  debug.o [1]
+  .rodata             const    0x0800c12c    0x10  debug.o [1]
+  .rodata             const    0x0800c13c    0x10  debug.o [1]
+  .rodata             const    0x0800c14c    0x10  debug.o [1]
+  .rodata             const    0x0800c15c    0x10  debug.o [1]
+  .rodata             const    0x0800c16c    0x10  rabm.o [1]
+  .rodata             const    0x0800c17c    0x10  rabm.o [1]
+  .rodata             const    0x0800c18c    0x10  rabm.o [1]
+  .rodata             const    0x0800c19c    0x10  rabm.o [1]
+  .rodata             const    0x0800c1ac    0x10  rabm.o [1]
+  .rodata             const    0x0800c1bc    0x10  rabm.o [1]
+  .rodata             const    0x0800c1cc    0x10  rabm.o [1]
+  .rodata             const    0x0800c1dc    0x10  util.o [1]
+  .text               ro code  0x0800c1ec    0x10  startup_stm32f10x_hd.o [1]
+  .rodata             const    0x0800c1fc     0xc  AlarmComm.o [1]
+  .rodata             const    0x0800c208     0xc  AlarmComm.o [1]
+  .rodata             const    0x0800c214     0xc  AlarmComm.o [1]
+  .rodata             const    0x0800c220     0xc  AlarmComm.o [1]
+  .rodata             const    0x0800c22c     0xc  AlarmComm.o [1]
+  .rodata             const    0x0800c238     0xc  AlarmComm.o [1]
+  .rodata             const    0x0800c244     0xc  command.o [1]
+  .rodata             const    0x0800c250     0xc  command.o [1]
+  .rodata             const    0x0800c25c     0xc  debug.o [1]
+  .rodata             const    0x0800c268     0xc  debug.o [1]
+  .rodata             const    0x0800c274     0xc  main.o [1]
+  .rodata             const    0x0800c280     0xc  main.o [1]
+  .rodata             const    0x0800c28c     0xc  main.o [1]
+  .rodata             const    0x0800c298     0xc  rabm.o [1]
+  .rodata             const    0x0800c2a4     0xc  rabm.o [1]
+  .rodata             const    0x0800c2b0     0xc  rabm.o [1]
+  .rodata             const    0x0800c2bc     0xc  rabm.o [1]
+  .rodata             const    0x0800c2c8     0xc  rabm.o [1]
+  .rodata             const    0x0800c2d4     0xc  rabm.o [1]
+  .rodata             const    0x0800c2e0     0xc  util.o [1]
+  .text               ro code  0x0800c2ec     0xc  cstartup_M.o [5]
+  .rodata             const    0x0800c2f8     0x8  AlarmComm.o [1]
+  .rodata             const    0x0800c300     0x8  command.o [1]
+  .rodata             const    0x0800c308     0x8  debug.o [1]
+  .rodata             const    0x0800c310     0x8  debug.o [1]
+  .rodata             const    0x0800c318     0x8  rabm.o [1]
+  .rodata             const    0x0800c320     0x8  rabm.o [1]
+  .rodata             const    0x0800c328     0x8  rabm.o [1]
+  .rodata             const    0x0800c330     0x8  util.o [1]
+  .text               ro code  0x0800c338     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c33c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c340     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c344     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c348     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c34c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c350     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c354     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c358     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c35c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c360     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c364     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c368     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c36c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c370     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c374     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c378     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c37c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c380     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c384     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c388     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c38c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c390     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c394     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c398     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c39c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3a0     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3a4     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3a8     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3ac     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3b0     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3b4     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3b8     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3bc     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3c0     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3c4     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3c8     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3cc     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3d0     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3d4     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3d8     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3dc     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3e0     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3e4     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3e8     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3ec     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3f0     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3f4     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3f8     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c3fc     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c400     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c404     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c408     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c40c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c410     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c414     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c418     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c41c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c420     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c424     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c428     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c42c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c430     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c434     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c438     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c43c     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c440     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c444     0x4  startup_stm32f10x_hd.o [1]
+  .text               ro code  0x0800c448     0x4  startup_stm32f10x_hd.o [1]
+  .rodata             const    0x0800c44c     0x0  zero_init3.o [5]
+  .rodata             const    0x0800c44c     0x0  lz77_init_single.o [5]
+  Initializer bytes   const    0x0800c44c   0x13a  <for P2-1>
+                             - 0x0800c586  0xc456
+
+"P2", part 1 of 3:                          0x451
+  P2-1                         0x20000000   0x451  <Init block>
+    .data             inited   0x20000000     0x8  AlarmComm.o [1]
+    .data             inited   0x20000008     0x4  AlarmComm.o [1]
+    .data             inited   0x2000000c     0x4  AlarmComm.o [1]
+    .data             inited   0x20000010    0x80  debug.o [1]
+    .data             inited   0x20000090    0xa0  debug.o [1]
+    .data             inited   0x20000130    0x28  rabm.o [1]
+    .data             inited   0x20000158     0x4  rabm.o [1]
+    .data             inited   0x2000015c     0x4  rabm.o [1]
+    .data             inited   0x20000160     0x4  rabm.o [1]
+    .data             inited   0x20000164     0x4  rabm.o [1]
+    .data             inited   0x20000168   0x100  rabm.o [1]
+    .data             inited   0x20000268     0x8  rabm.o [1]
+    .data             inited   0x20000270    0x48  rabm.o [1]
+    .data             inited   0x200002b8    0x10  stm32f10x_rcc.o [1]
+    .data             inited   0x200002c8     0x4  stm32f10x_rcc.o [1]
+    .data             inited   0x200002cc    0x40  xfiles.o [3]
+    __DLIB_PERTHREAD  inited   0x2000030c     0x8  localtim.o [3]
+    __DLIB_PERTHREAD  inited   0x20000314    0x74  setlocale.o [3]
+    __DLIB_PERTHREAD  inited   0x20000388    0x2c  xttotm.o [3]
+    __DLIB_PERTHREAD  inited   0x200003b4     0x4  errno.o [3]
+    __DLIB_PERTHREAD  inited   0x200003b8    0x88  localeconv.o [3]
+    __DLIB_PERTHREAD  inited   0x20000440     0x4  xisdst.o [3]
+    __DLIB_PERTHREAD  inited   0x20000444     0x4  xisdstData.o [3]
+    .data             inited   0x20000448     0x2  config.o [1]
+    .data             inited   0x2000044a     0x2  config.o [1]
+    .data             inited   0x2000044c     0x2  config.o [1]
+    .data             inited   0x2000044e     0x2  rabm.o [1]
+    .data             inited   0x20000450     0x1  config.o [1]
+                             - 0x20000451   0x451
+
+"P2", part 2 of 3:                         0x1000
+  CSTACK                       0x20000458   0x800  <Block>
+    CSTACK            uninit   0x20000458   0x800  <Block tail>
+  HEAP                         0x20000c58   0x800  <Block>
+    HEAP              uninit   0x20000c58   0x800  <Block tail>
+                             - 0x20001458  0x1000
+
+"P2", part 3 of 3:                          0xe70
+  .bss                zero     0x20001458   0x200  config.o [1]
+  .bss                zero     0x20001658   0x100  command.o [1]
+  .bss                zero     0x20001758   0x100  command.o [1]
+  .bss                zero     0x20001858   0x100  command.o [1]
+  .bss                zero     0x20001958    0xf4  AlarmComm.o [1]
+  .bss                zero     0x20001a4c    0xd8  AlarmComm.o [1]
+  .bss                zero     0x20001b24    0xa0  rabm.o [1]
+  .bss                zero     0x20001bc4    0x80  rabm.o [1]
+  .bss                zero     0x20001c44    0x70  rabm.o [1]
+  .bss                zero     0x20001cb4    0x68  command.o [1]
+  .bss                zero     0x20001d1c    0x64  AlarmComm.o [1]
+  .bss                zero     0x20001d80    0x60  rabm.o [1]
+  .bss                zero     0x20001de0    0x50  rabm.o [1]
+  .bss                zero     0x20001e30    0x50  xfiles.o [3]
+  .bss                zero     0x20001e80    0x48  command.o [1]
+  .bss                zero     0x20001ec8    0x30  rabm.o [1]
+  .bss                zero     0x20001ef8    0x30  rabm.o [1]
+  .bss                zero     0x20001f28    0x2c  config.o [1]
+  .bss                zero     0x20001f54    0x2c  Time.o [1]
+  .bss                zero     0x20001f80    0x28  command.o [1]
+  .bss                zero     0x20001fa8    0x28  command.o [1]
+  .bss                zero     0x20001fd0    0x24  rabm.o [1]
+  .bss                zero     0x20001ff4    0x20  AlarmComm.o [1]
+  .bss                zero     0x20002014    0x20  command.o [1]
+  .bss                zero     0x20002034    0x20  stm32f10x_it.o [1]
+  .bss                zero     0x20002054    0x20  stm32f10x_it.o [1]
+  .bss                zero     0x20002074    0x1c  rabm.o [1]
+  .bss                zero     0x20002090    0x18  command.o [1]
+  .bss                zero     0x200020a8    0x18  rabm.o [1]
+  .bss                zero     0x200020c0    0x18  rabm.o [1]
+  .bss                zero     0x200020d8    0x14  config.o [1]
+  .bss                zero     0x200020ec    0x14  config.o [1]
+  .bss                zero     0x20002100    0x14  config.o [1]
+  .bss                zero     0x20002114    0x14  rabm.o [1]
+  .bss                zero     0x20002128    0x14  rabm.o [1]
+  .bss                zero     0x2000213c    0x14  rabm.o [1]
+  .bss                zero     0x20002150    0x14  stm32f10x_it.o [1]
+  .bss                zero     0x20002164    0x10  AlarmComm.o [1]
+  .bss                zero     0x20002174    0x10  config.o [1]
+  .bss                zero     0x20002184     0xc  config.o [1]
+  .bss                zero     0x20002190     0xc  rabm.o [1]
+  .bss                zero     0x2000219c     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021a0     0x8  AlarmComm.o [1]
+  .bss                zero     0x200021a8     0x8  AlarmComm.o [1]
+  .bss                zero     0x200021b0     0x8  rabm.o [1]
+  .bss                zero     0x200021b8     0x8  stm32f10x_it.o [1]
+  .bss                zero     0x200021c0     0x8  xxmemxmalloc.o [3]
+  .bss                zero     0x200021c8     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021cc     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021d0     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021d4     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021d8     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021dc     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021e0     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021e4     0x4  AlarmComm.o [1]
+  .bss                zero     0x200021e8     0x4  command.o [1]
+  .bss                zero     0x200021ec     0x4  config.o [1]
+  .bss                zero     0x200021f0     0x4  config.o [1]
+  .bss                zero     0x200021f4     0x4  config.o [1]
+  .bss                zero     0x200021f8     0x4  config.o [1]
+  .bss                zero     0x200021fc     0x4  config.o [1]
+  .bss                zero     0x20002200     0x4  config.o [1]
+  .bss                zero     0x20002204     0x4  config.o [1]
+  .bss                zero     0x20002208     0x4  config.o [1]
+  .bss                zero     0x2000220c     0x4  ping.o [1]
+  .bss                zero     0x20002210     0x4  rabm.o [1]
+  .bss                zero     0x20002214     0x4  rabm.o [1]
+  .bss                zero     0x20002218     0x4  rabm.o [1]
+  .bss                zero     0x2000221c     0x4  rabm.o [1]
+  .bss                zero     0x20002220     0x4  rabm.o [1]
+  .bss                zero     0x20002224     0x4  rabm.o [1]
+  .bss                zero     0x20002228     0x4  rabm.o [1]
+  .bss                zero     0x2000222c     0x4  rabm.o [1]
+  .bss                zero     0x20002230     0x4  rabm.o [1]
+  .bss                zero     0x20002234     0x4  rabm.o [1]
+  .bss                zero     0x20002238     0x4  rabm.o [1]
+  .bss                zero     0x2000223c     0x4  rabm.o [1]
+  .bss                zero     0x20002240     0x4  rabm.o [1]
+  .bss                zero     0x20002244     0x4  rabm.o [1]
+  .bss                zero     0x20002248     0x4  rabm.o [1]
+  .bss                zero     0x2000224c     0x4  rabm.o [1]
+  .bss                zero     0x20002250     0x4  rabm.o [1]
+  .bss                zero     0x20002254     0x4  rabm.o [1]
+  .bss                zero     0x20002258     0x4  rabm.o [1]
+  .bss                zero     0x2000225c     0x4  rabm.o [1]
+  .bss                zero     0x20002260     0x4  rabm.o [1]
+  .bss                zero     0x20002264     0x4  rabm.o [1]
+  .bss                zero     0x20002268     0x4  rabm.o [1]
+  .bss                zero     0x2000226c     0x4  rabm.o [1]
+  .bss                zero     0x20002270     0x4  rabm.o [1]
+  .bss                zero     0x20002274     0x4  rabm.o [1]
+  .bss                zero     0x20002278     0x4  rabm.o [1]
+  .bss                zero     0x2000227c     0x4  stm32f10x_it.o [1]
+  .bss                zero     0x20002280     0x4  stm32f10x_it.o [1]
+  .bss                zero     0x20002284     0x4  stm32f10x_it.o [1]
+  .bss                zero     0x20002288     0x4  stm32f10x_it.o [1]
+  .bss                zero     0x2000228c     0x4  stm32f10x_it.o [1]
+  .bss                zero     0x20002290     0x4  stm32f10x_it.o [1]
+  .bss                zero     0x20002294     0x4  Time.o [1]
+  .bss                zero     0x20002298     0x4  Time.o [1]
+  .bss                zero     0x2000229c     0x4  Time.o [1]
+  .bss                zero     0x200022a0     0x4  util.o [1]
+  .bss                zero     0x200022a4     0x4  xgetmemchunk.o [3]
+  .bss                zero     0x200022a8     0x2  AlarmComm.o [1]
+  .bss                zero     0x200022aa     0x2  command.o [1]
+  .bss                zero     0x200022ac     0x2  command.o [1]
+  .bss                zero     0x200022ae     0x2  rabm.o [1]
+  .bss                zero     0x200022b0     0x2  rabm.o [1]
+  .bss                zero     0x200022b2     0x2  rabm.o [1]
+  .bss                zero     0x200022b4     0x2  rabm.o [1]
+  .bss                zero     0x200022b6     0x2  rabm.o [1]
+  .bss                zero     0x200022b8     0x2  rabm.o [1]
+  .bss                zero     0x200022ba     0x2  rabm.o [1]
+  .bss                zero     0x200022bc     0x2  rabm.o [1]
+  .bss                zero     0x200022be     0x2  stm32f10x_it.o [1]
+  .bss                zero     0x200022c0     0x1  AlarmComm.o [1]
+  .bss                zero     0x200022c1     0x1  command.o [1]
+  .bss                zero     0x200022c2     0x1  command.o [1]
+  .bss                zero     0x200022c3     0x1  config.o [1]
+  .bss                zero     0x200022c4     0x1  debug.o [1]
+  .bss                zero     0x200022c5     0x1  ping.o [1]
+  .bss                zero     0x200022c6     0x1  ping.o [1]
+                             - 0x200022c7   0xe6f
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0xe6f:
+          0x20001458  0xe6f
+
+Copy/lz77 (__iar_lz77_init_single3)
+    1 source range, total size 0x13a (28% of destination):
+          0x0800c44c  0x13a
+    1 destination range, total size 0x451:
+          0x20000000  0x451
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                  ro code  ro data  rw data
+    ------                  -------  -------  -------
+H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj: [1]
+    AlarmComm.o               1 628      508      679
+    Time.o                      308                56
+    command.o                 5 600      388    1 090
+    config.o                  5 816       35      684
+    debug.o                   2 408      338      289
+    main.o                      116      120
+    md5.o                     2 656       64
+    misc.o                      156
+    ping.o                       92       20        6
+    rabm.o                    8 464      655    1 382
+    startup_stm32f10x_hd.o      596
+    stm32f10x_adc.o             620
+    stm32f10x_can.o           1 388
+    stm32f10x_dac.o              24
+    stm32f10x_dma.o             412
+    stm32f10x_exti.o             56
+    stm32f10x_flash.o           446
+    stm32f10x_gpio.o            608
+    stm32f10x_i2c.o             536
+    stm32f10x_it.o              824               118
+    stm32f10x_iwdg.o             16
+    stm32f10x_rcc.o             916        6       20
+    stm32f10x_rtc.o             156
+    stm32f10x_spi.o             224
+    stm32f10x_tim.o             484
+    stm32f10x_usart.o           660
+    system_stm32f10x.o          344
+    util.o                      366       36        4
+    w5500.o                     136
+    -------------------------------------------------
+    Total:                   36 056    2 170    4 328
+
+command line: [2]
+    -------------------------------------------------
+    Total:
+
+dl7M_tlf.a: [3]
+    atoi.o                        8
+    div.o                        14
+    errno.o                      12        1        4
+    exit.o                        4
+    getzone.o                    10
+    isxxx.o                      20
+    localeconv.o                108       39      136
+    localtim.o                  182        2        8
+    low_level_init.o              4
+    mktime.o                    208
+    printf.o                     36
+    putchar.o                    12
+    setlocale.o                  84       33      116
+    sprintf.o                    52
+    strcat.o                     28
+    tolower.o                    20
+    vfprintf.o                   44
+    xencoding_sb.o               96
+    xfiles.o                              18      144
+    xfprout.o                    24
+    xgetdst.o                   350
+    xgetmemchunk.o               44                 4
+    xgettime.o                   66
+    xisdst.o                    308        1        4
+    xisdstData.o                           1        4
+    xlocale_c.o                  32
+    xmbcurmax.o                  10
+    xmbtowc.o                    32
+    xprintffull.o             4 490
+    xprout.o                     22
+    xsprout.o                    10
+    xstol.o                     136
+    xstoul.o                    408
+    xsyslock_nop.o                4
+    xtls.o                        2
+    xttotm.o                    392       13       44
+    xwctomb.o                    26
+    xxmemxfree.o                128
+    xxmemxmalloc.o              176                 8
+    -------------------------------------------------
+    Total:                    7 602      108      472
+
+m7M_tl.a: [4]
+    DblAdd.o                    232
+    DblCmpGe.o                   46
+    DblCmpLe.o                   46
+    DblDiv.o                    598
+    DblMul.o                    418
+    DblSub.o                    384
+    DblToFlt.o                  144
+    DblToI32.o                   88
+    FltAdd.o                    132
+    FltCmpEq.o                   28
+    FltCmpGe.o                   36
+    FltCmpLe.o                   36
+    FltDiv.o                    252
+    FltMul.o                    216
+    FltSub.o                    230
+    FltToDbl.o                   78
+    FltToS32.o                   68
+    I32ToDbl.o                   48
+    I32ToFlt.o                   50
+    xdnorm.o                     68
+    xdscale.o                   268
+    -------------------------------------------------
+    Total:                    3 466
+
+rt7M_tl.a: [5]
+    ABImemcpy_unaligned.o       118
+    ABImemset.o                 102
+    I64DivMod.o                 238
+    I64DivZer.o                   2
+    cexit.o                      10
+    cmain.o                      26
+    cstartup_M.o                 12
+    data_init.o                  40
+    lz77_init_single.o          120
+    memchr.o                     88
+    memcmp_unaligned.o           98
+    strchr.o                     22
+    strcpy_unaligned.o           68
+    strlen.o                     54
+    zero_init3.o                 64
+    -------------------------------------------------
+    Total:                    1 062
+
+shb_l.a: [6]
+    exit.o                       20
+    -------------------------------------------------
+    Total:                       20
+
+    Gaps                         50
+    Linker created                        32    4 096
+-----------------------------------------------------
+    Grand Total:             48 256    2 310    8 896
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.iar.init_table$$Base   0x0800bce8          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x0800bd08          --   Gb  - Linker created -
+?main                   0x0800bdb5         Code  Gb  cmain.o [5]
+A1_flag                 0x200022b0    0x2  Data  Gb  rabm.o [1]
+ACA_Read                0x0800089d   0x5e  Code  Gb  rabm.o [1]
+ACT_Read                0x080008fd   0x50  Code  Gb  rabm.o [1]
+ACV_Read                0x08000795  0x106  Code  Gb  rabm.o [1]
+ACV_value               0x20000164    0x4  Data  Gb  rabm.o [1]
+ADCPrescTable           0x200002c8    0x4  Data  Lc  stm32f10x_rcc.o [1]
+ADC_Cmd                 0x080085b7   0x1a  Code  Gb  stm32f10x_adc.o [1]
+ADC_Configuration_scanmode
+                        0x08002d11  0x108  Code  Gb  config.o [1]
+ADC_DMACmd              0x080085d1   0x1a  Code  Gb  stm32f10x_adc.o [1]
+ADC_DeInit              0x08008509   0x5e  Code  Gb  stm32f10x_adc.o [1]
+ADC_GetCalibrationStatus
+                        0x08008617   0x18  Code  Gb  stm32f10x_adc.o [1]
+ADC_GetResetCalibrationStatus
+                        0x080085f5   0x18  Code  Gb  stm32f10x_adc.o [1]
+ADC_Init                0x08008567   0x50  Code  Gb  stm32f10x_adc.o [1]
+ADC_InitStructure       0x200020ec   0x14  Data  Gb  config.o [1]
+ADC_RegularChannelConfig
+                        0x08008649   0xee  Code  Gb  stm32f10x_adc.o [1]
+ADC_ResetCalibration    0x080085eb    0xa  Code  Gb  stm32f10x_adc.o [1]
+ADC_SoftwareStartConvCmd
+                        0x0800862f   0x1a  Code  Gb  stm32f10x_adc.o [1]
+ADC_StartCalibration    0x0800860d    0xa  Code  Gb  stm32f10x_adc.o [1]
+ADC_TempSensorVrefintCmd
+                        0x08008737   0x22  Code  Gb  stm32f10x_adc.o [1]
+AFIO_Configuration      0x08003081   0x22  Code  Gb  config.o [1]
+APBAHBPrescTable        0x200002b8   0x10  Data  Lc  stm32f10x_rcc.o [1]
+BATA_Calibration        0x08000c91   0x22  Code  Gb  rabm.o [1]
+BATA_Read               0x08000b01  0x190  Code  Gb  rabm.o [1]
+BATA_Read::index        0x20002274    0x4  Data  Lc  rabm.o [1]
+BATA_Read::no           0x20002278    0x4  Data  Lc  rabm.o [1]
+BATT_Read               0x08000cb3  0x128  Code  Gb  rabm.o [1]
+BCV_Read                0x0800095d   0x74  Code  Gb  rabm.o [1]
+BusFault_Handler        0x0800b4bb    0x2  Code  Gb  stm32f10x_it.o [1]
+CAN_ClearITPendingBit   0x08006ae5   0x94  Code  Gb  stm32f10x_can.o [1]
+CAN_Config              0x08002775  0x186  Code  Gb  config.o [1]
+CAN_DeInit              0x08006631   0x38  Code  Gb  stm32f10x_can.o [1]
+CAN_FilterInit          0x08006781  0x112  Code  Gb  stm32f10x_can.o [1]
+CAN_FilterInitStructure
+                        0x20002174   0x10  Data  Gb  config.o [1]
+CAN_ITConfig            0x08006acf   0x16  Code  Gb  stm32f10x_can.o [1]
+CAN_Init                0x08006669  0x118  Code  Gb  stm32f10x_can.o [1]
+CAN_InitStructure       0x20002184    0xc  Data  Gb  config.o [1]
+CAN_LGT_TxMessage       0x08002a9b   0x30  Code  Gb  config.o [1]
+CAN_Receive             0x080069e7   0xe8  Code  Gb  stm32f10x_can.o [1]
+CAN_StructInit          0x08006893   0x2e  Code  Gb  stm32f10x_can.o [1]
+CAN_Transmit            0x080068c1  0x126  Code  Gb  stm32f10x_can.o [1]
+CAN_reset               0x08002697   0xde  Code  Gb  config.o [1]
+CS5463_Read             0x08003c59   0x24  Code  Gb  config.o [1]
+CS5463_Read_            0x08003b95   0x5c  Code  Gb  config.o [1]
+CS5463_Write_           0x08003bf9   0x60  Code  Gb  config.o [1]
+CS5463_page             0x20002208    0x4  Data  Gb  config.o [1]
+CSTACK$$Base            0x20000458          --   Gb  - Linker created -
+CSTACK$$Limit           0x20000c58          --   Gb  - Linker created -
+DAC_Configuration       0x0800313d   0x3a  Code  Gb  config.o [1]
+DAC_DeInit              0x08008959   0x18  Code  Gb  stm32f10x_dac.o [1]
+DAC_I2C_write           0x080034a9  0x100  Code  Gb  config.o [1]
+DAC_I2C_write::timeout  0x200021f8    0x4  Data  Lc  config.o [1]
+DAC_WriteCh             0x080030cd   0x70  Code  Gb  config.o [1]
+DCV_Read                0x08000a4d    0xe  Code  Gb  rabm.o [1]
+DCV_value               0x20002214    0x4  Data  Gb  rabm.o [1]
+DMA_Cmd                 0x080084b5   0x1c  Code  Gb  stm32f10x_dma.o [1]
+DMA_Configuration       0x08002c01   0x82  Code  Gb  config.o [1]
+DMA_DeInit              0x0800836d  0x10a  Code  Gb  stm32f10x_dma.o [1]
+DMA_Init                0x08008477   0x3e  Code  Gb  stm32f10x_dma.o [1]
+DMA_InitStructure       0x20001f28   0x2c  Data  Gb  config.o [1]
+DebugMon_Handler        0x0800b4bf    0x2  Code  Gb  stm32f10x_it.o [1]
+Delay                   0x080022cf    0xa  Code  Gb  util.o [1]
+Delay_ms                0x080023a7   0x2c  Code  Gb  util.o [1]
+Delay_us                0x08002375   0x32  Code  Gb  util.o [1]
+EEPROM_SendAddr         0x080035b1   0x72  Code  Gb  config.o [1]
+EEPROM_SendData         0x08003623   0x3e  Code  Gb  config.o [1]
+EXTI1_IRQHandler        0x0800b6f3   0x1a  Code  Gb  stm32f10x_it.o [1]
+EXTI_ClearITPendingBit  0x0800b815    0x6  Code  Gb  stm32f10x_exti.o [1]
+EXTI_GetITStatus        0x0800b7ed   0x28  Code  Gb  stm32f10x_exti.o [1]
+Enable_DHCP             0x200022c0    0x1  Data  Gb  AlarmComm.o [1]
+FLASH_ErasePage         0x080089d1   0x5e  Code  Gb  stm32f10x_flash.o [1]
+FLASH_GetBank1Status    0x08008aaf   0x34  Code  Gb  stm32f10x_flash.o [1]
+FLASH_Lock              0x080089bf   0x12  Code  Gb  stm32f10x_flash.o [1]
+FLASH_PrefetchBufferCmd
+                        0x08008989   0x20  Code  Gb  stm32f10x_flash.o [1]
+FLASH_ProgramWord       0x08008a2f   0x80  Code  Gb  stm32f10x_flash.o [1]
+FLASH_SetLatency        0x08008971   0x18  Code  Gb  stm32f10x_flash.o [1]
+FLASH_Unlock            0x080089a9   0x16  Code  Gb  stm32f10x_flash.o [1]
+FLASH_WaitForLastOperation
+                        0x08008b01   0x2e  Code  Gb  stm32f10x_flash.o [1]
+GPIOA_Configuration     0x08002eb9   0xbe  Code  Gb  config.o [1]
+GPIOB_Configuration     0x08002f77   0x5a  Code  Gb  config.o [1]
+GPIOC_Configuration     0x08003005   0x78  Code  Gb  config.o [1]
+GPIOD_Configuration     0x08002fd1   0x30  Code  Gb  config.o [1]
+GPIO_Configuration      0x080030a9   0x1c  Code  Gb  config.o [1]
+GPIO_DeInit             0x080023dd   0xb4  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_Init               0x08002491  0x136  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_InitStructure      0x200021f0    0x4  Data  Gb  config.o [1]
+GPIO_ReadInputDataBit   0x080025c7   0x1a  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_ReadOutputDataBit  0x080025e1   0x1a  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_ResetBits          0x08002601    0x6  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_SetBits            0x080025fb    0x6  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_Write              0x08002619    0x6  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_WriteBit           0x08002607   0x12  Code  Gb  stm32f10x_gpio.o [1]
+HEAP$$Base              0x20000c58          --   Gb  - Linker created -
+HEAP$$Limit             0x20001458          --   Gb  - Linker created -
+HSEStartUpStatus        0x200022c3    0x1  Data  Gb  config.o [1]
+HW_VERSION              0x20002114   0x14  Data  Gb  rabm.o [1]
+HardFault_Handler       0x0800b4b7    0x2  Code  Gb  stm32f10x_it.o [1]
+I2C1_ER_IRQHandler      0x0800b54b    0x2  Code  Gb  stm32f10x_it.o [1]
+I2C1_EV_IRQHandler      0x0800b545    0x2  Code  Gb  stm32f10x_it.o [1]
+I2C2_ER_IRQHandler      0x0800b549    0x2  Code  Gb  stm32f10x_it.o [1]
+I2C2_EV_IRQHandler      0x0800b547    0x2  Code  Gb  stm32f10x_it.o [1]
+I2C_AcknowledgeConfig   0x08008f51   0x1c  Code  Gb  stm32f10x_i2c.o [1]
+I2C_CheckEvent          0x08008fa5   0x38  Code  Gb  stm32f10x_i2c.o [1]
+I2C_Cmd                 0x08008efd   0x1c  Code  Gb  stm32f10x_i2c.o [1]
+I2C_Configuration       0x0800340f   0x86  Code  Gb  config.o [1]
+I2C_DeInit              0x08008dc5   0x36  Code  Gb  stm32f10x_i2c.o [1]
+I2C_GenerateSTART       0x08008f19   0x1c  Code  Gb  stm32f10x_i2c.o [1]
+I2C_GenerateSTOP        0x08008f35   0x1c  Code  Gb  stm32f10x_i2c.o [1]
+I2C_ITConfig            0x08008f6d   0x16  Code  Gb  stm32f10x_i2c.o [1]
+I2C_Init                0x08008dfb   0xf2  Code  Gb  stm32f10x_i2c.o [1]
+I2C_ReceiveData         0x08008f89    0x6  Code  Gb  stm32f10x_i2c.o [1]
+I2C_Send7bitAddress     0x08008f8f   0x16  Code  Gb  stm32f10x_i2c.o [1]
+I2C_SendData            0x08008f83    0x6  Code  Gb  stm32f10x_i2c.o [1]
+IINCHIP_CSoff           0x0800b1cd    0xa  Code  Gb  w5500.o [1]
+IINCHIP_CSon            0x0800b1d7    0xa  Code  Gb  w5500.o [1]
+IINCHIP_READ            0x0800b1f1   0x38  Code  Gb  w5500.o [1]
+IINCHIP_SpiSendData     0x0800b1e1   0x10  Code  Gb  w5500.o [1]
+IWDG_ReloadCounter      0x08003e29    0xa  Code  Gb  stm32f10x_iwdg.o [1]
+Init_RxMes              0x080028fb   0x5a  Code  Gb  config.o [1]
+Init_TxMessage          0x080029f1   0xaa  Code  Gb  config.o [1]
+LDA_Read                0x08000a5b   0x9e  Code  Gb  rabm.o [1]
+LoadInt                 0x080073eb   0x6e  Code  Lc  xprintffull.o [3]
+MemManage_Handler       0x0800b4b9    0x2  Code  Gb  stm32f10x_it.o [1]
+NMI_Handler             0x0800b4b5    0x2  Code  Gb  stm32f10x_it.o [1]
+NVIC_Configuration      0x08003365   0xaa  Code  Gb  config.o [1]
+NVIC_Init               0x080082db   0x68  Code  Gb  misc.o [1]
+NVIC_PriorityGroupConfig
+                        0x080082d1    0xa  Code  Gb  misc.o [1]
+NVIC_SetVectorTable     0x08008343    0xc  Code  Gb  misc.o [1]
+NVIC_SystemReset        0x08000131   0x22  Code  Lc  rabm.o [1]
+PendSV_Handler          0x0800b4c3    0x2  Code  Gb  stm32f10x_it.o [1]
+RCC_ADCCLKConfig        0x080080b5   0x14  Code  Gb  stm32f10x_rcc.o [1]
+RCC_AHBPeriphClockCmd   0x080081a5   0x1e  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB1PeriphClockCmd  0x080081e1   0x1e  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB1PeriphResetCmd  0x0800821d   0x1e  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB2PeriphClockCmd  0x080081c3   0x1e  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB2PeriphResetCmd  0x080081ff   0x1e  Code  Gb  stm32f10x_rcc.o [1]
+RCC_Configuration       0x08003185   0x8a  Code  Gb  config.o [1]
+RCC_DeInit              0x08007f3d   0x60  Code  Gb  stm32f10x_rcc.o [1]
+RCC_GetClocksFreq       0x080080c9   0xdc  Code  Gb  stm32f10x_rcc.o [1]
+RCC_GetFlagStatus       0x0800823b   0x52  Code  Gb  stm32f10x_rcc.o [1]
+RCC_GetSYSCLKSource     0x0800806d    0xa  Code  Gb  stm32f10x_rcc.o [1]
+RCC_HCLKConfig          0x08008077   0x14  Code  Gb  stm32f10x_rcc.o [1]
+RCC_HSEConfig           0x08007f9d   0x56  Code  Gb  stm32f10x_rcc.o [1]
+RCC_PCLK1Config         0x0800808b   0x14  Code  Gb  stm32f10x_rcc.o [1]
+RCC_PCLK2Config         0x0800809f   0x16  Code  Gb  stm32f10x_rcc.o [1]
+RCC_PLLCmd              0x0800804f    0xa  Code  Gb  stm32f10x_rcc.o [1]
+RCC_PLLConfig           0x08008033   0x1c  Code  Gb  stm32f10x_rcc.o [1]
+RCC_SYSCLKConfig        0x08008059   0x14  Code  Gb  stm32f10x_rcc.o [1]
+RCC_WaitForHSEStartUp   0x08007ff3   0x40  Code  Gb  stm32f10x_rcc.o [1]
+RET_Read                0x08000de5  0x128  Code  Gb  rabm.o [1]
+RTC_ClearITPendingBit   0x08004105    0xc  Code  Gb  stm32f10x_rtc.o [1]
+RTC_EnterConfigMode     0x08004085    0xe  Code  Gb  stm32f10x_rtc.o [1]
+RTC_ExitConfigMode      0x08004093   0x10  Code  Gb  stm32f10x_rtc.o [1]
+RTC_GetCounter          0x080040a3   0x16  Code  Gb  stm32f10x_rtc.o [1]
+RTC_GetITStatus         0x080040db   0x2a  Code  Gb  stm32f10x_rtc.o [1]
+RTC_IRQHandler          0x0800b4c7   0x1e  Code  Gb  stm32f10x_it.o [1]
+RTC_SetCounter          0x080040b9   0x18  Code  Gb  stm32f10x_rtc.o [1]
+RTC_WaitForLastTask     0x080040d1    0xa  Code  Gb  stm32f10x_rtc.o [1]
+Region$$Table$$Base     0x0800bce8          --   Gb  - Linker created -
+Region$$Table$$Limit    0x0800bd08          --   Gb  - Linker created -
+RxBuffer1               0x20001458  0x200  Data  Gb  config.o [1]
+RxMessage               0x20002150   0x14  Data  Gb  stm32f10x_it.o [1]
+SERIAL_NO               0x20002128   0x14  Data  Gb  rabm.o [1]
+SPI_Cmd                 0x08009081   0x1c  Code  Gb  stm32f10x_spi.o [1]
+SPI_Configuration       0x08003aed   0x62  Code  Gb  config.o [1]
+SPI_I2S_DeInit          0x08008fdd   0x58  Code  Gb  stm32f10x_spi.o [1]
+SPI_I2S_GetFlagStatus   0x080090a5   0x18  Code  Gb  stm32f10x_spi.o [1]
+SPI_I2S_ReceiveData     0x080090a1    0x4  Code  Gb  stm32f10x_spi.o [1]
+SPI_I2S_SendData        0x0800909d    0x4  Code  Gb  stm32f10x_spi.o [1]
+SPI_Init                0x08009035   0x40  Code  Gb  stm32f10x_spi.o [1]
+SPI_SendByte            0x08003b59   0x36  Code  Gb  config.o [1]
+SVC_Handler             0x0800b4c1    0x2  Code  Gb  stm32f10x_it.o [1]
+SerialPutChar           0x080032cd   0x22  Code  Gb  config.o [1]
+SetSysClock             0x0800b879    0x8  Code  Lc  system_stm32f10x.o [1]
+SetSysClockTo72         0x0800b881   0xe0  Code  Lc  system_stm32f10x.o [1]
+SysTick_Handler         0x0800b4c5    0x2  Code  Gb  stm32f10x_it.o [1]
+SystemInit              0x0800b825   0x54  Code  Gb  system_stm32f10x.o [1]
+TIM4_IRQHandler         0x0800b54d  0x1a6  Code  Gb  stm32f10x_it.o [1]
+TIM4_IRQHandler::i      0x20002290    0x4  Data  Lc  stm32f10x_it.o [1]
+TIM4_IRQHandler::tmcnt  0x2000228c    0x4  Data  Lc  stm32f10x_it.o [1]
+TIME                    0x20002294    0x4  Data  Gb  Time.o [1]
+TIM_ClearITPendingBit   0x08008927    0x8  Code  Gb  stm32f10x_tim.o [1]
+TIM_Cmd                 0x080088a3   0x1c  Code  Gb  stm32f10x_tim.o [1]
+TIM_GetCapture1         0x080088f1    0x4  Code  Gb  stm32f10x_tim.o [1]
+TIM_GetITStatus         0x080088f5   0x32  Code  Gb  stm32f10x_tim.o [1]
+TIM_ITConfig            0x080088bf   0x16  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC1Init             0x08008809   0x9a  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC1PreloadConfig    0x080088db   0x12  Code  Gb  stm32f10x_tim.o [1]
+TIM_PrescalerConfig     0x080088d5    0x6  Code  Gb  stm32f10x_tim.o [1]
+TIM_SetCompare1         0x080088ed    0x4  Code  Gb  stm32f10x_tim.o [1]
+TIM_TimeBaseInit        0x08008775   0x94  Code  Gb  stm32f10x_tim.o [1]
+Thr                     0x20000270   0x48  Data  Gb  rabm.o [1]
+TimeDisplay             0x200021ec    0x4  Data  Gb  config.o [1]
+Timer4_Init             0x08002e19   0xa0  Code  Gb  config.o [1]
+TxMessage               0x20002100   0x14  Data  Gb  config.o [1]
+UART_Configuration      0x080032c5    0x8  Code  Gb  config.o [1]
+USART1_IRQHandler       0x0800b4e5   0x5e  Code  Gb  stm32f10x_it.o [1]
+USART1_Init             0x08003219   0xac  Code  Gb  config.o [1]
+USART2_IRQHandler       0x0800b543    0x2  Code  Gb  stm32f10x_it.o [1]
+USART_Cmd               0x08008cb5   0x1c  Code  Gb  stm32f10x_usart.o [1]
+USART_DeInit            0x08008b31   0x90  Code  Gb  stm32f10x_usart.o [1]
+USART_GetFlagStatus     0x08008d37   0x1e  Code  Gb  stm32f10x_usart.o [1]
+USART_GetITStatus       0x08008d55   0x70  Code  Gb  stm32f10x_usart.o [1]
+USART_ITConfig          0x08008cd1   0x56  Code  Gb  stm32f10x_usart.o [1]
+USART_Init              0x08008bc1   0xde  Code  Gb  stm32f10x_usart.o [1]
+USART_ReceiveData       0x08008d2f    0x8  Code  Gb  stm32f10x_usart.o [1]
+USART_Rx                0x080032f5   0x4a  Code  Gb  config.o [1]
+USART_SendData          0x08008d27    0x8  Code  Gb  stm32f10x_usart.o [1]
+USB_LP_CAN1_RX0_IRQHandler
+                        0x0800b70d   0x84  Code  Gb  stm32f10x_it.o [1]
+UsageFault_Handler      0x0800b4bd    0x2  Code  Gb  stm32f10x_it.o [1]
+Vref                    0x20000158    0x4  Data  Gb  rabm.o [1]
+WIZ_CS                  0x0800b1a5   0x28  Code  Gb  w5500.o [1]
+_EncodingSb_Mbtowc      0x0800b2c3   0x30  Code  Gb  xencoding_sb.o [3]
+_EncodingSb_Mbtowc::initial
+                        0x0800b300    0x8  Data  Lc  xencoding_sb.o [3]
+_EncodingSb_Wctomb      0x0800b2a9   0x1a  Code  Gb  xencoding_sb.o [3]
+_EncodingSb_Wctomb::initial
+                        0x0800b2f8    0x8  Data  Lc  xencoding_sb.o [3]
+_FProut                 0x0800beb9   0x18  Code  Gb  xfprout.o [3]
+_GenldFull              0x08007c71  0x254  Code  Lc  xprintffull.o [3]
+_Getdst                 0x0800b375  0x132  Code  Gb  xgetdst.o [3]
+_Gettime                0x080091ef   0x42  Code  Gb  xgettime.o [3]
+_IsdstStr               0x20000318    0x4  Data  Gb  setlocale.o [3]
+_Isdst_olddst           0x20000440    0x4  Data  Lc  xisdst.o [3]
+_Isdst_rules            0x20000444    0x4  Data  Gb  xisdstData.o [3]
+_LdtobFull              0x08007871  0x3fa  Code  Lc  xprintffull.o [3]
+_LitobFull              0x08007765  0x10a  Code  Lc  xprintffull.o [3]
+_LocaleC_isspace        0x0800b335   0x14  Code  Gb  xlocale_c.o [3]
+_LocaleC_tolower        0x0800b4a7    0xc  Code  Gb  xlocale_c.o [3]
+_LocaleEncoding         0x080091c9    0xe  Code  Gb  setlocale.o [3]
+_LocaleForCat           0x080091b7   0x12  Code  Gb  setlocale.o [3]
+_LocaleReturnString     0x20000338   0x50  Data  Lc  setlocale.o [3]
+_Locale_Profile         0x2000031c   0x1c  Data  Gb  setlocale.o [3]
+_Locale_aeabi_lconv     0x20000408   0x38  Data  Gb  localeconv.o [3]
+_Locale_lconv           0x200003b8   0x50  Data  Gb  localeconv.o [3]
+_Localtime_oldzone      0x2000030c    0x4  Data  Lc  localtim.o [3]
+_Localtime_tzoff        0x20000310    0x4  Data  Lc  localtim.o [3]
+_Mbtowc                 0x0800ac67   0x20  Code  Gb  xmbtowc.o [3]
+_PrintfFull             0x08006d85  0x650  Code  Gb  xprintffull.o [3]
+_Prout                  0x0800bed1   0x16  Code  Gb  xprout.o [3]
+_PutcharsFull           0x08007ec5   0x2e  Code  Lc  xprintffull.o [3]
+_PutstrFull             0x08007459  0x306  Code  Lc  xprintffull.o [3]
+_SProut                 0x080023d3    0xa  Code  Gb  xsprout.o [3]
+_Ttotm_ts               0x20000388   0x2c  Data  Lc  xttotm.o [3]
+_Tzoff                  0x08004121   0x94  Code  Gb  localtim.o [3]
+_TzoneStr               0x20000314    0x4  Data  Gb  setlocale.o [3]
+_Wctomb                 0x0800adb5   0x1a  Code  Gb  xwctomb.o [3]
+__aeabi_cdcmple         0x0800ae95         Code  Gb  DblCmpLe.o [4]
+__aeabi_cdrcmple        0x0800aa81         Code  Gb  DblCmpGe.o [4]
+__aeabi_cfcmpeq         0x080049b5         Code  Gb  FltCmpEq.o [4]
+__aeabi_cfcmple         0x080043d9         Code  Gb  FltCmpLe.o [4]
+__aeabi_cfrcmple        0x080049d1         Code  Gb  FltCmpGe.o [4]
+__aeabi_d2f             0x0800424d         Code  Gb  DblToFlt.o [4]
+__aeabi_d2iz            0x0800402d         Code  Gb  DblToI32.o [4]
+__aeabi_d2uiz           0x08004059         Code  Gb  DblToI32.o [4]
+__aeabi_dadd            0x080043fd         Code  Gb  DblAdd.o [4]
+__aeabi_ddiv            0x080044e5         Code  Gb  DblDiv.o [4]
+__aeabi_dmul            0x08003e89         Code  Gb  DblMul.o [4]
+__aeabi_dsub            0x08009441         Code  Gb  DblSub.o [4]
+__aeabi_errno_addr      0x0800b065    0x6  Code  Gb  errno.o [3]
+__aeabi_f2d             0x08003e39         Code  Gb  FltToDbl.o [4]
+__aeabi_f2iz            0x080041d9         Code  Gb  FltToS32.o [4]
+__aeabi_fadd            0x08004931         Code  Gb  FltAdd.o [4]
+__aeabi_fdiv            0x080042dd         Code  Gb  FltDiv.o [4]
+__aeabi_fmul            0x08004771         Code  Gb  FltMul.o [4]
+__aeabi_fsub            0x08004849         Code  Gb  FltSub.o [4]
+__aeabi_i2d             0x0800421d         Code  Gb  I32ToDbl.o [4]
+__aeabi_i2f             0x0800473d         Code  Gb  I32ToFlt.o [4]
+__aeabi_ldiv0           0x0800ac65         Code  Gb  I64DivZer.o [5]
+__aeabi_memset          0x0800b22d         Code  Gb  ABImemset.o [5]
+__aeabi_ui2d            0x08004231         Code  Gb  I32ToDbl.o [4]
+__aeabi_ui2f            0x08004751         Code  Gb  I32ToFlt.o [4]
+__aeabi_uldivmod        0x08006c95         Code  Gb  I64DivMod.o [5]
+__cmain                 0x0800bdb5         Code  Gb  cmain.o [5]
+__data_Aldata           0x200021c0    0x8  Data  Gb  xxmemxmalloc.o [3]
+__data_GetMemChunk      0x0800b309   0x2c  Code  Gb  xgetmemchunk.o [3]
+__data_GetMemChunk::start
+                        0x200022a4    0x4  Data  Lc  xgetmemchunk.o [3]
+__exit                  0x0800bde5   0x14  Code  Gb  exit.o [6]
+__getzone               0x080091e5    0x6  Code  Gb  getzone.o [3]
+__iar_Daysto32          0x080092b9   0x3a  Code  Gb  xttotm.o [3]
+__iar_Dnorm             0x0800ae51   0x44  Code  Gb  xdnorm.o [4]
+__iar_Dscale            0x0800aec5  0x10c  Code  Gb  xdscale.o [4]
+__iar_Errno             0x200003b4    0x4  Data  Gb  errno.o [3]
+__iar_Isdst32           0x0800b071  0x134  Code  Gb  xisdst.o [3]
+__iar_Locale_lconv_init
+                        0x0800afd1   0x3a  Code  Gb  localeconv.o [3]
+__iar_Lockfilelock      0x0800b04b    0x2  Code  Gb  xsyslock_nop.o [3]
+__iar_Mbcurmax          0x0800acf9    0xa  Code  Gb  xmbcurmax.o [3]
+__iar_Memchr            0x0800aca1         Code  Gb  memchr.o [5]
+__iar_Memset            0x0800b22d         Code  Gb  ABImemset.o [5]
+__iar_Memset_word       0x0800b235         Code  Gb  ABImemset.o [5]
+__iar_Stdout            0x200002cc   0x40  Data  Gb  xfiles.o [3]
+__iar_Stolx             0x08009231   0x88  Code  Gb  xstol.o [3]
+__iar_Stoul             0x0800ac11    0x4  Code  Gb  xstoul.o [3]
+__iar_Stoulx            0x0800aacd  0x13e  Code  Gb  xstoul.o [3]
+__iar_Strchr            0x0800ac89         Code  Gb  strchr.o [5]
+__iar_Ttotm32           0x080092f3  0x112  Code  Gb  xttotm.o [3]
+__iar_TzoneStr_init     0x08009191   0x26  Code  Gb  setlocale.o [3]
+__iar_Unlockfilelock    0x0800b04d    0x2  Code  Gb  xsyslock_nop.o [3]
+__iar_d2uiz             0x08004065         Code  Gb  DblToI32.o [4]
+__iar_dadd              0x08004411         Code  Gb  DblAdd.o [4]
+__iar_data_init3        0x0800bc31   0x28  Code  Gb  data_init.o [5]
+__iar_dlib_perthread_access
+                        0x0800918d    0x2  Code  Gb  xtls.o [3]
+__iar_dsub              0x08009455         Code  Gb  DblSub.o [4]
+__iar_dsubStart         0x08009467         Code  Gb  DblSub.o [4]
+__iar_fadd              0x08004941         Code  Gb  FltAdd.o [4]
+__iar_fsub              0x08004859         Code  Gb  FltSub.o [4]
+__iar_fsubStart         0x08004869         Code  Gb  FltSub.o [4]
+__iar_lz77_init_single3
+                        0x0800b97d   0x78  Code  Gb  lz77_init_single.o [5]
+__iar_program_start     0x0800c2ed         Code  Gb  cstartup_M.o [5]
+__iar_ui2d              0x08004235         Code  Gb  I32ToDbl.o [4]
+__iar_ui2f              0x08004755         Code  Gb  I32ToFlt.o [4]
+__iar_unaligned___aeabi_memcpy
+                        0x08006bd1         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_unaligned___aeabi_memcpy4
+                        0x08006bf1         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_unaligned___aeabi_memcpy8
+                        0x08006bf1         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_unaligned_memcmp  0x0800a9e5         Code  Gb  memcmp_unaligned.o [5]
+__iar_unaligned_strcpy  0x08006c49         Code  Gb  strcpy_unaligned.o [5]
+__iar_zero_init3        0x0800baf9   0x40  Code  Gb  zero_init3.o [5]
+__localtime32           0x080041bd   0x1a  Code  Gb  localtim.o [3]
+__low_level_init        0x0800bdcf    0x4  Code  Gb  low_level_init.o [3]
+__mktime32              0x080090bd   0xd0  Code  Gb  mktime.o [3]
+__vector_table          0x08000000         Data  Gb  startup_stm32f10x_hd.o [1]
+_call_main              0x0800bdc1         Code  Gb  cmain.o [5]
+_exit                   0x0800bdd9         Code  Gb  cexit.o [5]
+_main                   0x0800bdcb         Code  Gb  cmain.o [5]
+acv_flag                0x20002268    0x4  Data  Gb  rabm.o [1]
+ad_offset               0x20001fd0   0x24  Data  Gb  rabm.o [1]
+ad_read_offset          0x080014ff   0x22  Code  Gb  rabm.o [1]
+ad_save_offset          0x080014ed   0x12  Code  Gb  rabm.o [1]
+ad_set                  0x20002090   0x18  Data  Gb  command.o [1]
+ad_temp                 0x20002054   0x20  Data  Gb  stm32f10x_it.o [1]
+adc_dr                  0x200020d8   0x14  Data  Gb  config.o [1]
+adc_ready               0x200022b2    0x2  Data  Gb  rabm.o [1]
+adv                     0x20002034   0x20  Data  Gb  stm32f10x_it.o [1]
+alarm_set               0x20001f80   0x28  Data  Gb  command.o [1]
+alarm_set_default       0x08001715   0xe4  Code  Gb  rabm.o [1]
+alarm_sts               0x20001b24   0xa0  Data  Gb  rabm.o [1]
+alarm_timer_init        0x080011c9   0x3c  Code  Gb  rabm.o [1]
+atimer                  0x20001d80   0x60  Data  Gb  rabm.o [1]
+atoi                    0x08006c8d    0x8  Code  Gb  atoi.o [3]
+auto_test               0x200020a8   0x18  Data  Gb  rabm.o [1]
+auto_test_time          0x200021b0    0x8  Data  Gb  rabm.o [1]
+avg_ref                 0x08001bb5   0xca  Code  Gb  rabm.o [1]
+batA                    0x2000213c   0x14  Data  Gb  rabm.o [1]
+batS                    0x20002260    0x4  Data  Gb  rabm.o [1]
+bat_can_flag            0x200022be    0x2  Data  Gb  stm32f10x_it.o [1]
+bat_offset              0x20002270    0x4  Data  Gb  rabm.o [1]
+bat_set_auto_test_day   0x08001edd  0x1a6  Code  Gb  rabm.o [1]
+bat_test_save_mode      0x08001de1   0x14  Code  Gb  rabm.o [1]
+bat_test_save_period    0x08001e0b   0x10  Code  Gb  rabm.o [1]
+bat_test_save_time      0x08001e1b   0x54  Code  Gb  rabm.o [1]
+bat_test_save_v         0x08001df5   0x16  Code  Gb  rabm.o [1]
+bat_test_set_mode       0x08001e75   0x26  Code  Gb  rabm.o [1]
+bat_test_set_period     0x08002085   0x2e  Code  Gb  rabm.o [1]
+bat_test_set_v          0x08001e9d   0x40  Code  Gb  rabm.o [1]
+bat_test_start          0x080020bd   0x34  Code  Gb  rabm.o [1]
+bms                     0x20000130   0x28  Data  Gb  rabm.o [1]
+bms_send_resp           0x08002acb  0x136  Code  Gb  config.o [1]
+bms_type                0x2000044a    0x2  Data  Gb  config.o [1]
+can_tx_count            0x200022ae    0x2  Data  Gb  rabm.o [1]
+check_bat_sts           0x080015f1  0x110  Code  Gb  rabm.o [1]
+check_can_type          0x0800263d   0x5a  Code  Gb  config.o [1]
+check_can_type::type    0x2000044c    0x2  Data  Lc  config.o [1]
+check_port_status       0x080010e1   0xe0  Code  Gb  rabm.o [1]
+check_port_status::pstatus
+                        0x200022bc    0x2  Data  Lc  rabm.o [1]
+check_status_flag       0x200022b6    0x2  Data  Gb  rabm.o [1]
+clear_alarms            0x08001541   0x9c  Code  Gb  rabm.o [1]
+cmd_ac_test             0x080097e3   0x7e  Code  Gb  debug.o [1]
+cmd_adc_test            0x080096fb   0x5a  Code  Gb  debug.o [1]
+cmd_boot0_test          0x0800989d   0x4a  Code  Gb  debug.o [1]
+cmd_button_test         0x080098e7   0x76  Code  Gb  debug.o [1]
+cmd_chip_id             0x08009663   0x42  Code  Gb  debug.o [1]
+cmd_dac_test            0x08009755   0x8e  Code  Gb  debug.o [1]
+cmd_debug_mode          0x08009c01   0x50  Code  Gb  debug.o [1]
+cmd_eprom_erase         0x08009ad5   0x48  Code  Gb  debug.o [1]
+cmd_eprom_test          0x08009a89   0x4c  Code  Gb  debug.o [1]
+cmd_get_ip              0x080096a5   0x56  Code  Gb  debug.o [1]
+cmd_info_set            0x08009c99   0x4c  Code  Gb  debug.o [1]
+cmd_led_test            0x08009861   0x3c  Code  Gb  debug.o [1]
+cmd_out_sel             0x08009ce5   0x2a  Code  Gb  debug.o [1]
+cmd_output_test         0x0800995d   0x98  Code  Gb  debug.o [1]
+cmd_relay_test          0x080099f5   0x94  Code  Gb  debug.o [1]
+cmd_self_test           0x0800963b   0x28  Code  Gb  debug.o [1]
+cmd_set_hw_version      0x08009b49   0x42  Code  Gb  debug.o [1]
+cmd_set_mac             0x08009b8b   0x3a  Code  Gb  debug.o [1]
+cmd_set_sn              0x08009bc5   0x3c  Code  Gb  debug.o [1]
+cmd_system_shutdown     0x08009b1d   0x2c  Code  Gb  debug.o [1]
+cmd_test_mode           0x08009c51   0x48  Code  Gb  debug.o [1]
+const_hw_desc           0x0800ba68   0x50  Data  Gb  AlarmComm.o [1]
+conv                    0x08002287   0x48  Code  Gb  util.o [1]
+ctoi                    0x08005fd5   0x1a  Code  Gb  AlarmComm.o [1]
+ctx                     0x20001a4c   0xd8  Data  Gb  AlarmComm.o [1]
+dac_addr                0x20000448    0x2  Data  Gb  config.o [1]
+dac_test                0x08009607   0x34  Code  Gb  debug.o [1]
+dac_test_flag           0x200022c4    0x1  Data  Gb  debug.o [1]
+dac_value               0x20000268    0x8  Data  Gb  rabm.o [1]
+debug_mode_toggle       0x080095ef   0x18  Code  Gb  debug.o [1]
+diagnosis               0x08009d85  0x1a4  Code  Gb  debug.o [1]
+digits                  0x0800ac14   0x28  Data  Lc  xstoul.o [3]
+div                     0x0800b03d    0xe  Code  Gb  div.o [3]
+dl_ack_frame            0x200021e8    0x4  Data  Gb  command.o [1]
+do_test_mode            0x080050fd   0x14  Code  Gb  command.o [1]
+download_fw             0x08005137  0x2da  Code  Gb  command.o [1]
+dprintf                 0x08002265   0x22  Code  Gb  util.o [1]
+dump_memory             0x080022e7   0x66  Code  Gb  util.o [1]
+eeprom_OK               0x20002228    0x4  Data  Gb  rabm.o [1]
+eeprom_erase            0x08000349   0x46  Code  Gb  rabm.o [1]
+eeprom_read             0x08003825  0x19c  Code  Gb  config.o [1]
+eeprom_read::timeout    0x20002200    0x4  Data  Lc  config.o [1]
+eeprom_read_buffer      0x08003665  0x1a0  Code  Gb  config.o [1]
+eeprom_read_buffer::timeout
+                        0x200021fc    0x4  Data  Lc  config.o [1]
+eeprom_test             0x080002dd   0x6c  Code  Gb  rabm.o [1]
+eeprom_write            0x080039cd  0x118  Code  Gb  config.o [1]
+eeprom_write::timeout   0x20002204    0x4  Data  Lc  config.o [1]
+exit                    0x0800bdd3    0x4  Code  Gb  exit.o [3]
+fail_lock               0x20002240    0x4  Data  Lc  rabm.o [1]
+fail_on_ready           0x20002250    0x4  Data  Gb  rabm.o [1]
+flash_erase             0x080060c1   0x32  Code  Gb  AlarmComm.o [1]
+flash_write             0x08005fef   0x60  Code  Gb  AlarmComm.o [1]
+forced_bat_test         0x2000226c    0x4  Data  Gb  rabm.o [1]
+fputc                   0x08003c7d   0x22  Code  Gb  config.o [1]
+fram_addr               0x20000450    0x1  Data  Gb  config.o [1]
+free                    0x0800add1   0x7a  Code  Gb  xxmemxfree.o [3]
+fusing_check_file       0x080062fd   0xc8  Code  Gb  AlarmComm.o [1]
+fusing_count            0x200021e0    0x4  Data  Gb  AlarmComm.o [1]
+fusing_finish           0x08006129  0x1b0  Code  Gb  AlarmComm.o [1]
+fusing_init             0x080060f5   0x2c  Code  Gb  AlarmComm.o [1]
+fusing_mod              0x200021dc    0x4  Data  Gb  AlarmComm.o [1]
+fusing_size             0x200021d8    0x4  Data  Gb  AlarmComm.o [1]
+fusing_total_size       0x200021e4    0x4  Data  Gb  AlarmComm.o [1]
+fw_version              0x20000160    0x4  Data  Gb  rabm.o [1]
+get_4byte               0x08004f91   0x36  Code  Gb  command.o [1]
+get_alarm_status        0x08001205    0x8  Code  Gb  rabm.o [1]
+get_byte                0x08005fc9    0xc  Code  Gb  command.o [1]
+get_command             0x08004f63   0x1c  Code  Gb  command.o [1]
+get_data                0x080050cd   0x30  Code  Gb  command.o [1]
+get_floatvalue          0x08004ffd   0x54  Code  Gb  command.o [1]
+get_frame               0x08005e39   0xea  Code  Gb  command.o [1]
+get_frame::check_sum    0x200022c2    0x1  Data  Lc  command.o [1]
+get_frame::frame_length
+                        0x200022c1    0x1  Data  Lc  command.o [1]
+get_frame::frame_ptr    0x200022aa    0x2  Data  Lc  command.o [1]
+get_frame::frame_start  0x200022ac    0x2  Data  Lc  command.o [1]
+get_intvalue            0x08004fc7   0x36  Code  Gb  command.o [1]
+get_intvalue2           0x08005051   0x36  Code  Gb  command.o [1]
+get_ip_address          0x080060a7   0x1a  Code  Gb  AlarmComm.o [1]
+get_log_size            0x08001061   0x1a  Code  Gb  rabm.o [1]
+get_mode                0x080050c5    0x8  Code  Gb  command.o [1]
+get_op_mode             0x08001249   0x4e  Code  Gb  rabm.o [1]
+get_rect_status         0x0800109d   0x36  Code  Gb  rabm.o [1]
+get_str                 0x08004f7f   0x12  Code  Gb  command.o [1]
+get_string2             0x08005087   0x3e  Code  Gb  command.o [1]
+get_system_time         0x08003db5   0x54  Code  Gb  Time.o [1]
+get_time_counter        0x08003e09    0x8  Code  Gb  Time.o [1]
+getint                  0x0800b349   0x2c  Code  Lc  xgetdst.o [3]
+hw_desc                 0x20001958   0xf4  Data  Gb  AlarmComm.o [1]
+hw_version              0x2000015c    0x4  Data  Gb  rabm.o [1]
+init_adc_dr             0x08002cf7   0x1a  Code  Gb  config.o [1]
+inputs                  0x20000090   0xa0  Data  Gb  debug.o [1]
+ip_bat_test_residual    0x080063c5   0xa8  Code  Gb  AlarmComm.o [1]
+ip_set_hw_desc          0x0800646d   0x34  Code  Gb  AlarmComm.o [1]
+ip_set_memo_info        0x0800604f   0x22  Code  Gb  AlarmComm.o [1]
+ip_state                0x200021d4    0x4  Data  Gb  AlarmComm.o [1]
+ip_update_flash_ip      0x08006071   0x36  Code  Gb  AlarmComm.o [1]
+ip_write_psu_name       0x08006549   0x26  Code  Gb  AlarmComm.o [1]
+isspace                 0x0800b04f   0x14  Code  Gb  isxxx.o [3]
+lmos                    0x08009410   0x18  Data  Lc  xttotm.o [3]
+localeconv              0x0800b00b   0x16  Code  Gb  localeconv.o [3]
+log_event               0x20002074   0x1c  Data  Gb  rabm.o [1]
+log_format_eeprom       0x080006a9   0x52  Code  Gb  rabm.o [1]
+log_frame               0x20002014   0x20  Data  Gb  command.o [1]
+log_get_time            0x08000701   0x3a  Code  Gb  rabm.o [1]
+log_header              0x20002190    0xc  Data  Gb  rabm.o [1]
+log_header_no           0x20002238    0x4  Data  Gb  rabm.o [1]
+log_id                  0x2000044e    0x2  Data  Gb  rabm.o [1]
+log_send_index          0x20002224    0x4  Data  Gb  rabm.o [1]
+log_send_size           0x20002220    0x4  Data  Gb  rabm.o [1]
+log_sending             0x2000221c    0x4  Data  Gb  rabm.o [1]
+log_set_header_checksum
+                        0x08000679   0x22  Code  Gb  rabm.o [1]
+log_sts                 0x20001de0   0x50  Data  Gb  rabm.o [1]
+log_write               0x08000441  0x22a  Code  Gb  rabm.o [1]
+main                    0x0800b9f5   0x74  Code  Gb  main.o [1]
+malloc                  0x0800ad05   0xac  Code  Gb  xxmemxmalloc.o [3]
+management_id           0x200021d0    0x4  Data  Gb  AlarmComm.o [1]
+management_id_flag      0x2000219c    0x4  Data  Gb  AlarmComm.o [1]
+md5_finish              0x0800a7f3   0xde  Code  Gb  md5.o [1]
+md5_free                0x08009fad   0x12  Code  Gb  md5.o [1]
+md5_init                0x08009f99   0x14  Code  Gb  md5.o [1]
+md5_input               0x20001ff4   0x20  Data  Gb  AlarmComm.o [1]
+md5_output              0x20002164   0x10  Data  Gb  AlarmComm.o [1]
+md5_padding             0x0800bab8   0x40  Data  Lc  md5.o [1]
+md5_process             0x08009fe1  0x784  Code  Gb  md5.o [1]
+md5_starts              0x08009fbf   0x22  Code  Gb  md5.o [1]
+md5_update              0x0800a765   0x8e  Code  Gb  md5.o [1]
+memchr                  0x0800aca1         Code  Gb  memchr.o [5]
+mos                     0x08009428   0x18  Data  Lc  xttotm.o [3]
+ndigs                   0x0800ac3c   0x28  Data  Lc  xstoul.o [3]
+obuf                    0x20001e30   0x50  Data  Lc  xfiles.o [3]
+ocp_lock                0x2000224c    0x4  Data  Lc  rabm.o [1]
+offset_save             0x0800038f   0x78  Code  Gb  rabm.o [1]
+op_frame                0x20001fa8   0x28  Data  Gb  command.o [1]
+op_sts                  0x20001ec8   0x30  Data  Gb  rabm.o [1]
+operation_mode          0x200022a8    0x2  Data  Gb  AlarmComm.o [1]
+out_status              0x200022ba    0x2  Data  Gb  rabm.o [1]
+outputs                 0x20000010   0x80  Data  Gb  debug.o [1]
+ovp_count               0x20002244    0x4  Data  Lc  rabm.o [1]
+ovp_flag                0x20002248    0x4  Data  Lc  rabm.o [1]
+ovp_lock                0x2000223c    0x4  Data  Lc  rabm.o [1]
+ping_addr               0x2000000c    0x4  Data  Gb  AlarmComm.o [1]
+ping_ok                 0x200022c6    0x1  Data  Gb  ping.o [1]
+ping_repeat             0x2000220c    0x4  Data  Gb  ping.o [1]
+ping_start              0x200022c5    0x1  Data  Gb  ping.o [1]
+ping_to                 0x08009f29   0x46  Code  Gb  ping.o [1]
+polarssl_zeroize        0x08009f85   0x14  Code  Lc  md5.o [1]
+port_status             0x200022b8    0x2  Data  Gb  rabm.o [1]
+port_sts                0x20000168  0x100  Data  Gb  rabm.o [1]
+printf                  0x08002241   0x24  Code  Gb  printf.o [3]
+psu_ip                  0x20000008    0x4  Data  Gb  AlarmComm.o [1]
+psu_mac                 0x20000000    0x8  Data  Gb  AlarmComm.o [1]
+psu_name_set            0x20001cb4   0x68  Data  Gb  command.o [1]
+ptim                    0x20002298    0x4  Data  Gb  Time.o [1]
+putchar                 0x0800bee9    0xc  Code  Gb  putchar.o [3]
+rabm_main               0x080020f9   0xea  Code  Gb  rabm.o [1]
+rabm_process_command    0x08005439  0x372  Code  Gb  command.o [1]
+read_adc                0x08002c83   0x74  Code  Gb  config.o [1]
+read_adc::flag          0x200021f4    0x4  Data  Lc  config.o [1]
+read_bat_A              0x08000f7d   0x54  Code  Gb  rabm.o [1]
+read_bat_T              0x08000fd5   0x10  Code  Gb  rabm.o [1]
+read_bat_V              0x08000f3d   0x14  Code  Gb  rabm.o [1]
+read_dcv                0x080009d9   0x74  Code  Gb  rabm.o [1]
+read_eeprom             0x08000407   0x16  Code  Gb  rabm.o [1]
+read_input_A            0x08000f1d   0x10  Code  Gb  rabm.o [1]
+read_input_V            0x08000f0d   0x10  Code  Gb  rabm.o [1]
+read_output_A           0x08000f51   0x2c  Code  Gb  rabm.o [1]
+read_output_V           0x08000f2d   0x10  Code  Gb  rabm.o [1]
+read_rec_T              0x08000fe9   0x10  Code  Gb  rabm.o [1]
+recover                 0x200020c0   0x18  Data  Gb  rabm.o [1]
+recovery_start          0x08001c85   0xa0  Code  Gb  rabm.o [1]
+rect_on                 0x0800029b   0x42  Code  Gb  rabm.o [1]
+rect_on_flag            0x20002218    0x4  Data  Gb  rabm.o [1]
+rect_sts                0x20001c44   0x70  Data  Gb  rabm.o [1]
+rect_test_on            0x080095d7   0x18  Code  Gb  debug.o [1]
+relay_off               0x08000223   0x78  Code  Gb  rabm.o [1]
+relay_on                0x080001ab   0x78  Code  Gb  rabm.o [1]
+reset_type              0x2000229c    0x4  Data  Gb  Time.o [1]
+restart_flag            0x20002264    0x4  Data  Gb  rabm.o [1]
+restart_time            0x200021a0    0x8  Data  Gb  AlarmComm.o [1]
+rs_fusing_image         0x080062dd   0x1e  Code  Gb  AlarmComm.o [1]
+rtc_time                0x20001f54   0x2c  Data  Gb  Time.o [1]
+rx_array                0x20001858  0x100  Data  Gb  command.o [1]
+rx_buffer               0x20001758  0x100  Data  Gb  command.o [1]
+rx_frame                0x20001658  0x100  Data  Gb  command.o [1]
+rx_head                 0x20002280    0x4  Data  Gb  stm32f10x_it.o [1]
+rx_overrun              0x20002288    0x4  Data  Gb  stm32f10x_it.o [1]
+rx_tail                 0x20002284    0x4  Data  Gb  stm32f10x_it.o [1]
+save_value              0x080014d1   0x14  Code  Gb  rabm.o [1]
+saved_ip                0x200021c8    0x4  Data  Gb  AlarmComm.o [1]
+saved_mac               0x200021a8    0x8  Data  Gb  AlarmComm.o [1]
+saved_management_id     0x200021cc    0x4  Data  Gb  AlarmComm.o [1]
+send_ad_set             0x08005acd   0x8c  Code  Gb  command.o [1]
+send_alarm_set          0x08005b59   0xbc  Code  Gb  command.o [1]
+send_byte               0x08005e0d    0xe  Code  Gb  command.o [1]
+send_dl_ack             0x08005111   0x26  Code  Gb  command.o [1]
+send_frame              0x08005dcd   0x40  Code  Gb  command.o [1]
+send_log_no             0x08005965   0x34  Code  Gb  command.o [1]
+send_log_record         0x08005999   0x48  Code  Gb  command.o [1]
+send_op_set             0x080059e1   0xe4  Code  Gb  command.o [1]
+send_psu_name           0x08005ca1   0x28  Code  Gb  command.o [1]
+send_rect_status        0x08005c15   0x86  Code  Gb  command.o [1]
+send_system_info        0x080057b1  0x134  Code  Gb  command.o [1]
+send_system_time        0x080058ed   0x70  Code  Gb  command.o [1]
+send_test_frame         0x080095c1   0x16  Code  Gb  debug.o [1]
+set_ad_ba               0x08004c65   0x3e  Code  Gb  command.o [1]
+set_ad_ia               0x08004b57   0x3e  Code  Gb  command.o [1]
+set_ad_iv               0x08004b0f   0x48  Code  Gb  command.o [1]
+set_ad_oa               0x08004c27   0x3e  Code  Gb  command.o [1]
+set_ad_ov               0x08004b95   0x92  Code  Gb  command.o [1]
+set_ad_reset            0x08004ca9   0xba  Code  Gb  command.o [1]
+set_ad_set_log          0x080013e9   0x38  Code  Gb  rabm.o [1]
+set_ad_zero             0x08004d63   0x70  Code  Gb  command.o [1]
+set_alarm_bfv           0x08004e73   0x28  Code  Gb  command.o [1]
+set_alarm_bht           0x08004ec3   0x28  Code  Gb  command.o [1]
+set_alarm_blv           0x08004e9b   0x28  Code  Gb  command.o [1]
+set_alarm_clear         0x08004f29   0x3a  Code  Gb  command.o [1]
+set_alarm_default       0x08004f13   0x16  Code  Gb  command.o [1]
+set_alarm_ihv           0x08004dd3   0x28  Code  Gb  command.o [1]
+set_alarm_ilv           0x08004dfb   0x28  Code  Gb  command.o [1]
+set_alarm_mode          0x08005ccd   0x2c  Code  Gb  command.o [1]
+set_alarm_ohv           0x08004e23   0x28  Code  Gb  command.o [1]
+set_alarm_olv           0x08004e4b   0x28  Code  Gb  command.o [1]
+set_alarm_rht           0x08004eeb   0x28  Code  Gb  command.o [1]
+set_alarm_set_log       0x080013b1   0x38  Code  Gb  rabm.o [1]
+set_bat_equip           0x08005cf9   0x5c  Code  Gb  command.o [1]
+set_bat_test_day        0x08004ac3   0x26  Code  Gb  command.o [1]
+set_bat_test_log        0x08001459   0x38  Code  Gb  rabm.o [1]
+set_bat_test_off        0x08004a23   0x1e  Code  Gb  command.o [1]
+set_bat_test_off::__FUNCTION__
+                        0x0800bf44   0x14  Data  Lc  command.o [1]
+set_bat_test_on         0x08004a05   0x1e  Code  Gb  command.o [1]
+set_bat_test_on::__FUNCTION__
+                        0x0800c0bc   0x10  Data  Lc  command.o [1]
+set_bat_test_period     0x08004a73   0x1a  Code  Gb  command.o [1]
+set_bat_test_req        0x08004a8d   0x36  Code  Gb  command.o [1]
+set_bat_test_req::__FUNCTION__
+                        0x0800bf58   0x14  Data  Lc  command.o [1]
+set_bat_test_time       0x08004ae9   0x26  Code  Gb  command.o [1]
+set_bat_test_v          0x08004a41   0x32  Code  Gb  command.o [1]
+set_date_only           0x08003cf5   0x2a  Code  Gb  Time.o [1]
+set_flash_ip            0x08001521   0x16  Code  Gb  rabm.o [1]
+set_log_clear           0x08005db5    0xe  Code  Gb  command.o [1]
+set_mac_address         0x08006575   0x3e  Code  Gb  AlarmComm.o [1]
+set_management_id       0x080065b3   0x5e  Code  Gb  AlarmComm.o [1]
+set_operation_log       0x08001421   0x38  Code  Gb  rabm.o [1]
+set_output_mode         0x080012bb   0x1e  Code  Gb  rabm.o [1]
+set_output_voltage      0x08001379   0x34  Code  Gb  rabm.o [1]
+set_psu_name            0x080049f5   0x10  Code  Gb  command.o [1]
+set_shutdown_log        0x08001491   0x38  Code  Gb  rabm.o [1]
+set_system_date         0x08005d8b   0x2a  Code  Gb  command.o [1]
+set_system_restart      0x08000153   0x2e  Code  Gb  rabm.o [1]
+set_system_time         0x08005d65   0x26  Code  Gb  command.o [1]
+set_time                0x08003d45   0x70  Code  Gb  Time.o [1]
+set_time_only           0x08003d1f   0x26  Code  Gb  Time.o [1]
+sprintf                 0x08006b9d   0x34  Code  Gb  sprintf.o [3]
+sr_off                  0x08001dc5   0x18  Code  Gb  rabm.o [1]
+sr_on                   0x08001dad   0x18  Code  Gb  rabm.o [1]
+strcat                  0x0800aaaf   0x1c  Code  Gb  strcat.o [3]
+strchr                  0x0800ac89         Code  Gb  strchr.o [5]
+strlen                  0x0800aa49         Code  Gb  strlen.o [5]
+sys_error               0x080022d9    0xe  Code  Gb  util.o [1]
+sys_frame               0x20001e80   0x48  Data  Gb  command.o [1]
+sys_info                0x20001ef8   0x30  Data  Gb  rabm.o [1]
+sys_read_hw_version     0x0800182d   0x7a  Code  Gb  rabm.o [1]
+sys_read_mac            0x080018ad   0x72  Code  Gb  rabm.o [1]
+sys_read_sn             0x0800192d   0x42  Code  Gb  rabm.o [1]
+sys_set_hw_version      0x08001a81   0x10  Code  Gb  rabm.o [1]
+sys_set_info            0x08001a75    0xc  Code  Gb  rabm.o [1]
+sys_set_mac             0x08001a91   0x10  Code  Gb  rabm.o [1]
+sys_set_sn              0x08001aa1   0xf8  Code  Gb  rabm.o [1]
+sys_write_hw_version    0x0800196f   0x1c  Code  Gb  rabm.o [1]
+sys_write_ip_info       0x080019b9   0x64  Code  Gb  rabm.o [1]
+sys_write_mac_info      0x08001a25   0x30  Code  Gb  rabm.o [1]
+sys_write_sn            0x08001991   0x1e  Code  Gb  rabm.o [1]
+system_alarm_status     0x200022b4    0x2  Data  Gb  rabm.o [1]
+system_shutdown         0x08000181   0x2a  Code  Gb  rabm.o [1]
+system_shutdown_flag    0x2000222c    0x4  Data  Gb  rabm.o [1]
+test_TxMessage          0x08002955   0x9c  Code  Gb  config.o [1]
+test_mode               0x20002234    0x4  Data  Gb  rabm.o [1]
+test_value              0x20002210    0x4  Data  Gb  rabm.o [1]
+time10ms                0x200021b8    0x8  Data  Gb  stm32f10x_it.o [1]
+time3ms                 0x2000227c    0x4  Data  Gb  stm32f10x_it.o [1]
+time_tmp                0x20002230    0x4  Data  Gb  rabm.o [1]
+tolower                 0x0800b293   0x14  Code  Gb  tolower.o [3]
+user_psu_name           0x20001d1c   0x64  Data  Gb  AlarmComm.o [1]
+vfprintf                0x08007f11   0x2c  Code  Gb  vfprintf.o [3]
+vref                    0x20001bc4   0x80  Data  Gb  rabm.o [1]
+vref_flag               0x20002258    0x4  Data  Gb  rabm.o [1]
+vref_ind                0x20002254    0x4  Data  Gb  rabm.o [1]
+vref_init               0x08001d7d   0x2e  Code  Gb  rabm.o [1]
+vref_sum                0x2000225c    0x4  Data  Gb  rabm.o [1]
+write_eeprom            0x0800041d   0x24  Code  Gb  rabm.o [1]
+write_output_mode       0x080012a1   0x1a  Code  Gb  rabm.o [1]
+write_output_voltage    0x080012e5   0x8a  Code  Gb  rabm.o [1]
+write_shutdown_log      0x0800076d   0x28  Code  Gb  rabm.o [1]
+yooha_debug             0x200022a0    0x4  Data  Gb  util.o [1]
+
+
+[1] = H:\WORK_THIS\STM32F10x_StdPeriph_Lib_V3.5.0\Project\5G_TEST_JIG\EWARM\SKT_5G_C\Obj
+[2] = command line
+[3] = dl7M_tlf.a
+[4] = m7M_tl.a
+[5] = rt7M_tl.a
+[6] = shb_l.a
+
+  48 256 bytes of readonly  code memory
+   2 310 bytes of readonly  data memory
+   8 896 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

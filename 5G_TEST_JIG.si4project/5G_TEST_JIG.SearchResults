@@ -1,38 +1,5 @@
----- adv Matches (50 in 5 files) ----
-debug.c line 15 : extern ADC_VALUE adv;
-cmd_adc_test in debug.c : 	*pbuf++ = adv.dcv;
-cmd_adc_test in debug.c : 	*pbuf++ = adv.dca;
-cmd_adc_test in debug.c : 	*pbuf++ = adv.rect;
-cmd_adc_test in debug.c : 	*pbuf++ = adv.batt;
-cmd_adc_test in debug.c : 	*pbuf = adv.refv;
-cmd_adc_test in debug.c : 	printf("ADC: %d %d", adv.dcv,  adv.dca);
-cmd_adc_test in debug.c : 	printf(" %d %d %d\n", adv.rect,  adv.batt, adv.refv);
-cmd_dac_test in debug.c : 	printf("ADV: %d, %d\n", value, dac_value[0], dac_value[1]);
-md5_config.h line 800 :  * The advantage of not sending alert messages, is that no information is given
-md5_config.h line 801 :  * about reasons for failures thus preventing adversaries of gaining intel.
-md5_config.h line 1602 :  *          processor traits. It is therefore not advised to use HAVEGE as
-md5_config.h line 2200 :  * Our advice is to enable options and change their values here
-rabm.c line 88 : extern ADC_VALUE adv;
-display_status in rabm.c : 	printf("REFADC : %d\n", adv.dca);
-display_status in rabm.c : 	//printf("REFADC : %d %d %d %d\n", adv.dcv, adv.dca, adv.batv, adv.bata);
-display_status in rabm.c : 	//printf("ADC (RT BT refV) : %d %d %d %d\n", adv.rect, adv.batt, adv.refv, adv.dacv);
-BCV_Read in rabm.c : 	if ( adv.batv > adv.dcv ) adv.batv = adv.dcv;
-BCV_Read in rabm.c : 	dcv = (float) (adv.batv / 10.0);
-read_dcv_value in rabm.c : 	dcv = (float) (adv.dcv / 10.0);
-read_dcv in rabm.c : 		dcv = (float) (adv.dcv / 10.0) * Vref / 4095.0;
-LDA_Read in rabm.c :     v =  (float) ( adv.dca /10.0) * Vref / 4095.0  ;	// ACS output voltage 0A = 2.5V
-LDA_Read in rabm.c : 	//printf("LCD : %5.2F %5.2F\n",adv.dca, v);
-BATA_Read in rabm.c : 	vm = (float) ( adv.bata / 10.0);
-BATT_Read in rabm.c : 	value = (float) (adv.batt/10.0) ;   //* 1.215;
-RET_Read in rabm.c : 	value = (float) (adv.rect / 10.0);   //* 1.215;
-avg_ref in rabm.c : 	ref = adv.refv / 10;
-stm32f10x_it.c line 75 : ADC_VALUE adv, ad_temp;
-TIM4_IRQHandler in stm32f10x_it.c : 			adv.dcv = ad_temp.dcv; 
-TIM4_IRQHandler in stm32f10x_it.c : 			adv.dca = ad_temp.dca;
-TIM4_IRQHandler in stm32f10x_it.c : 			adv.batv = ad_temp.batv;
-TIM4_IRQHandler in stm32f10x_it.c : 			adv.bata = ad_temp.bata;
-TIM4_IRQHandler in stm32f10x_it.c : 			adv.rect = ad_temp.rect;
-TIM4_IRQHandler in stm32f10x_it.c : 			adv.batt = ad_temp.batt;
-TIM4_IRQHandler in stm32f10x_it.c : 			adv.refv = ad_temp.refv;	
-TIM4_IRQHandler in stm32f10x_it.c : 			adv.dacv = ad_temp.dacv;
+---- ADC: Matches (4 in 3 files) ----
+cmd_adc_test in debug.c : 	//printf("ADC: %d %d", adv.dcv/10,  adv.dca/10);
+rabm_main in rabm.c : 			//printf("ADC:%d, %d\n", adc_dr[1], adv.batv);
+TH_TEST_DRV.SearchResults line 1 : ---- ADC: Matches (1 in 1 files) ----
 TH_TEST_DRV.SearchResults line 2 : Debug.c:	printf("ADC: %d %d", adv.dcv,  adv.dca);

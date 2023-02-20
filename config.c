@@ -87,33 +87,57 @@ CAN_FilterInitTypeDef  CAN_FilterInitStructure;
 CanTxMsg TxMessage;
 extern CanRxMsg RxMessage;
 
+uint16_t bms_type = BMS_KT;
+
+
+void check_can_type() 
+{
+	static uint16_t type = BMS_KT;
+
+	//return;
+	
+	if ( GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8 ) == 0 ) {
+		bms_type  = BMS_LGT;
+
+	}
+	else {
+		bms_type = BMS_KT;
+	}
+
+	if ( type != bms_type ) {
+		printf("CAN TYPE = %d\n", bms_type);
+		CAN_reset();
+		Delay_ms(100);
+	}
+
+	type = bms_type;
+
+}
+
 void CAN_reset()
 {
-	
-	  /* CAN cell init */
-	  CAN_InitStructure.CAN_TTCM = DISABLE;
-	  CAN_InitStructure.CAN_ABOM = DISABLE;
-	  CAN_InitStructure.CAN_AWUM = DISABLE;
-	  CAN_InitStructure.CAN_NART = DISABLE;
-	  CAN_InitStructure.CAN_RFLM = DISABLE;
-	  CAN_InitStructure.CAN_TXFP = DISABLE;
-	  CAN_InitStructure.CAN_Mode = CAN_Mode_Normal;
-	  //CAN_InitStructure.CAN_Mode = CAN_Mode_LoopBack;
-	
-#if 0  
-	  /* CAN Baudrate = 1MBps*/  
-	  CAN_InitStructure.CAN_SJW = CAN_SJW_1tq;
-	  CAN_InitStructure.CAN_BS1 = CAN_BS1_3tq;
-	  CAN_InitStructure.CAN_BS2 = CAN_BS2_5tq;
-	  CAN_InitStructure.CAN_Prescaler = 4;
-#endif
-		/* CAN Baudrate = 250Kbps*/  
-	
-		CAN_InitStructure.CAN_SJW=CAN_SJW_1tq;
-		CAN_InitStructure.CAN_BS1=CAN_BS1_8tq;
-		CAN_InitStructure.CAN_BS2=CAN_BS2_7tq;
-		CAN_InitStructure.CAN_Prescaler=9; 
-	  CAN_Init(CANx, &CAN_InitStructure);
+	/* CAN register init */
+	CAN_DeInit(CANx);
+	CAN_StructInit(&CAN_InitStructure);
+
+
+	if ( bms_type == BMS_LGT ) {
+		  /* CAN Baudrate = 500KBps*/  
+		  CAN_InitStructure.CAN_SJW = CAN_SJW_1tq;
+		  CAN_InitStructure.CAN_BS1 = CAN_BS1_3tq;
+		  CAN_InitStructure.CAN_BS2 = CAN_BS2_5tq;
+		  CAN_InitStructure.CAN_Prescaler = 8;
+	}
+	else if (bms_type == BMS_KT) {
+	/* CAN Baudrate = 250Kbps*/  
+	CAN_InitStructure.CAN_SJW=CAN_SJW_1tq;
+	CAN_InitStructure.CAN_BS1=CAN_BS1_8tq;
+	CAN_InitStructure.CAN_BS2=CAN_BS2_7tq;
+	CAN_InitStructure.CAN_Prescaler=9; 
+	}
+
+	CAN_Init(CANx, &CAN_InitStructure);
+
 	
 	  /* CAN filter init */
 #ifdef  __CAN1_USED__
@@ -132,9 +156,10 @@ void CAN_reset()
 	  CAN_FilterInit(&CAN_FilterInitStructure);
 	  
 	  /* Transmit */
-	 //Init_TxMessage();
-	 //Init_RxMes(&RxMessage);
+	 Init_TxMessage();
+	 Init_RxMes(&RxMessage);
 
+	CAN_ITConfig(CANx, CAN_IT_FMP0, ENABLE);
 
 }
 
@@ -197,12 +222,20 @@ void CAN_Config(void)
   CAN_InitStructure.CAN_BS2 = CAN_BS2_5tq;
   CAN_InitStructure.CAN_Prescaler = 4;
 #endif
+	if ( bms_type == BMS_LGT ) {
+		  /* CAN Baudrate = 500KBps*/  
+		  CAN_InitStructure.CAN_SJW = CAN_SJW_1tq;
+		  CAN_InitStructure.CAN_BS1 = CAN_BS1_3tq;
+		  CAN_InitStructure.CAN_BS2 = CAN_BS2_5tq;
+		  CAN_InitStructure.CAN_Prescaler = 8;
+	}
+	else if (bms_type == BMS_KT) {
 	/* CAN Baudrate = 250Kbps*/  
-
   	CAN_InitStructure.CAN_SJW=CAN_SJW_1tq;
 	CAN_InitStructure.CAN_BS1=CAN_BS1_8tq;
 	CAN_InitStructure.CAN_BS2=CAN_BS2_7tq;
 	CAN_InitStructure.CAN_Prescaler=9; 
+	}
   CAN_Init(CANx, &CAN_InitStructure);
 
   /* CAN filter init */
@@ -237,29 +270,37 @@ void CAN_Config(void)
 void Init_RxMes(CanRxMsg *RxMessage)
 {
   uint8_t i = 0;
-
-  RxMessage->StdId = 0x00;
-  RxMessage->ExtId = 0x00;
-  RxMessage->IDE = CAN_ID_EXT;
-  //RxMessage->IDE = CAN_ID_STD;
-  RxMessage->DLC = 0;
-  RxMessage->FMI = 0;
+	 if (bms_type == BMS_KT ) {
+		  RxMessage->StdId = 0x00;
+		  RxMessage->ExtId = 0x00;
+		  RxMessage->IDE = CAN_ID_EXT;
+		  RxMessage->DLC = 0;
+		  RxMessage->FMI = 0;
+	 }
+	 else if (bms_type == BMS_LGT ) {
+		RxMessage->StdId = 0x00;
+		RxMessage->ExtId = 0x00;
+		RxMessage->IDE = CAN_ID_STD;
+		RxMessage->DLC = 0;
+		RxMessage->FMI = 0;
+	}
   for (i = 0;i < 8;i++)
   {
     RxMessage->Data[i] = 0x00;
   }
 }
 
-
+uint16_t tx_can_data = 0xabcd;
 void test_TxMessage()
 {
 	/* Transmit */
 	TxMessage.StdId = 0x0;
 	TxMessage.ExtId = CAN_RSP_BMS; // CAN_READ_BMS, host addr = 0x00, bms Addr = 0x01
 	TxMessage.RTR = CAN_RTR_DATA;
-	//TxMessage.RTR = CAN_RTR_REMOTE;
 	TxMessage.IDE = CAN_ID_EXT;
 	TxMessage.DLC = 8;
+
+#if 1
 
 	TxMessage.Data[0] = bms.v & 0xff;
 	TxMessage.Data[1] = ( bms.v >> 8 ) & 0xff;
@@ -268,27 +309,148 @@ void test_TxMessage()
 	TxMessage.Data[4] = bms.sts & 0xff;
 	TxMessage.Data[5] = ( bms.sts >> 8 ) & 0xff;
 	TxMessage.Data[6] = bms.prt & 0xff;
-	TxMessage.Data[7] = ( bms.prt >> 8 ) & 0xff;
+	TxMessage.Data[7] = ( bms.prt >> 8 ) & 0xff;	
+#endif
+#if 0
+
+	TxMessage.Data[0] = tx_can_data & 0xff;
+	TxMessage.Data[1] = ( tx_can_data>> 8 ) & 0xff;
+	TxMessage.Data[2] = tx_can_data & 0xff;
+	TxMessage.Data[3] = ( tx_can_data >> 8 ) & 0xff;
+	TxMessage.Data[4] = tx_can_data & 0xff;
+	TxMessage.Data[5] = (tx_can_data>> 8 ) & 0xff;
+	TxMessage.Data[6] = tx_can_data & 0xff;
+	TxMessage.Data[7] = ( tx_can_data >> 8 ) & 0xff;
+#endif
 }
+
+
 
 
 void Init_TxMessage()
 {
-	/* Transmit */
-	TxMessage.StdId = 0x0;
-	TxMessage.ExtId = CAN_READ_BMS; // CAN_READ_BMS, host addr = 0x00, bms Addr = 0x01
-	//TxMessage.RTR = CAN_RTR_DATA;
-	TxMessage.RTR = CAN_RTR_REMOTE;
-	TxMessage.IDE = CAN_ID_EXT;
-	TxMessage.DLC = 4;
 
-	TxMessage.Data[0] = 0x00;
-	TxMessage.Data[1] = 0x00;
-	TxMessage.Data[2] = 0x17;	//15s
-	TxMessage.Data[3] = 0x00;	
+	if ( bms_type == BMS_KT) {
+	/* Transmit */
+		TxMessage.StdId = 0x0;
+		TxMessage.ExtId = CAN_READ_BMS; // CAN_READ_BMS, host addr = 0x00, bms Addr = 0x01
+		TxMessage.RTR = CAN_RTR_DATA;
+		TxMessage.IDE = CAN_ID_EXT;
+		TxMessage.DLC = 4;
+
+		TxMessage.Data[0] = 0x00;
+		TxMessage.Data[1] = 0x00;
+		TxMessage.Data[2] = 0x17;	//15s
+		TxMessage.Data[3] = 0x00;	
+	}
+	else if (bms_type == BMS_LGT ) {
+		TxMessage.StdId = BMS_ID;
+		TxMessage.ExtId = 0;
+		TxMessage.RTR = CAN_RTR_DATA;
+		TxMessage.IDE = CAN_ID_STD;
+		TxMessage.DLC = 8;
+
+		TxMessage.Data[0] = 0x00;
+		TxMessage.Data[1] = 0x00;
+		TxMessage.Data[2] = 0x17;	//15s
+		TxMessage.Data[3] = 0x00;	
+	}
 
 }
 
+
+uint8_t* CAN_LGT_TxMessage(uint16_t id)
+{
+	/* Transmit */
+	TxMessage.StdId = id;
+	TxMessage.ExtId = 00; // CAN_READ_BMS, host addr = 0x00, bms Addr = 0x01
+	TxMessage.RTR = CAN_RTR_DATA;
+	TxMessage.IDE = CAN_ID_STD;
+	TxMessage.DLC = 8;
+
+	return TxMessage.Data;
+}
+
+void bms_send_resp(uint16_t req)
+{
+	uint8_t *data;
+	printf("BMS RESP %x\n", req);
+	
+	switch (bat_can_flag) {
+		case BMS_REQ_ALARM:
+			data = CAN_LGT_TxMessage(BMS_RX_ALARM);
+			data[0] = 0xaa;
+			data[1] = 20;
+			data[2] = 0x55;
+			data[3] = 0x33;
+			data[4] = 0xa5;
+			data[5] = 0xaa;
+			data[6] = 0x55;
+			data[7] = 0x33;
+			CAN_Transmit(CANx, &TxMessage);
+			break;
+		case BMS_REQ_VERSION:
+			data = CAN_LGT_TxMessage(BMS_RX_VERSION);
+			data[0] = 0x1;
+			data[1] = 0x2;
+			data[2] = 0x3;
+			data[3] = 0x4;
+			data[4] = 999 / 256;
+			data[5] = 999 & 0xff;
+			data[6] = 0;
+			data[7] = 100;
+			CAN_Transmit(CANx, &TxMessage);
+			break;
+		case BMS_REQ_STATE:
+			data = CAN_LGT_TxMessage(BMS_RX_STATE);
+			data[0]= 5400 / 256;
+			data[1] = 5400 & 0xff;
+			data[2]= 1160 / 256;
+			data[3] = 1160 & 0xff;
+			data[4] = 770 / 256;
+			data[5] = 770 & 0xff;
+			data[6] = 33 / 256;
+			data[7]  = 33 & 0xff;
+			CAN_Transmit(CANx, &TxMessage);
+			break;
+		case BMS_REQ_CELL:
+			data = CAN_LGT_TxMessage(BMS_RX_CELL);
+			data[0]= 0 / 256;
+			data[1] = 0 & 0xff;
+			data[2]= 0 / 256;
+			data[3] = 0 & 0xff;
+			data[4] = 0 / 256;
+			data[5] = 0 & 0xff;
+			data[6] = 30 / 256;
+			data[7]  = 30 & 0xff;;
+			CAN_Transmit(CANx, &TxMessage);
+			break;
+	#if 0
+		case BMS_REQ_LVD:
+			data = CAN_LGT_TxMessage(BMS_RX_CELL);
+			data[0]= 0 / 256;
+			data[1] = 0 & 0xff;
+			data[2]= 0 / 256;
+			data[3] = 0 & 0xff;
+			data[4] = 0 / 256;
+			data[5] = 0 & 0xff;
+			data[6] = 30 / 256;
+			data[7]  = 30 & 0xff;;
+			CAN_Transmit(CANx, &TxMessage);
+			break;
+	#endif
+		case BMS_REQ_CL:
+			data = CAN_LGT_TxMessage(BMS_RX_LVD);
+			*(uint16_t *) &data[0] = 0x0a0a;
+			*(uint16_t *) &data[2] = 0x0a0a;
+			*(uint16_t *) &data[4] = 0x0a0a;
+			*(uint16_t *) &data[6] = 0x0a0a;
+			CAN_Transmit(CANx, &TxMessage);
+			break;
+		default:
+			break;
+	}	
+}
 
 void DMA_Configuration_dualmode(void)
 {
@@ -392,7 +554,11 @@ void DMA_Configuration(void)
 	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)ADC1_DR_Address;
 	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)adc_dr;
 	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
-	DMA_InitStructure.DMA_BufferSize = 3;
+#ifdef KT_JIG
+       DMA_InitStructure.DMA_BufferSize = 3;
+#else
+	DMA_InitStructure.DMA_BufferSize = 4;
+#endif
 	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
@@ -472,8 +638,11 @@ void ADC_Configuration_scanmode(void)
 	ADC_DeInit(ADC1);
 
 	RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC | RCC_APB2Periph_ADC1, ENABLE);
-
+#ifdef KT_JIG
   GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_1 | GPIO_Pin_2;
+#else
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2;
+#endif
   GPIO_InitStructure.GPIO_Speed =  0; //GPIO_Speed_2MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; 
   GPIO_Init(GPIOC, &GPIO_InitStructure);
@@ -485,7 +654,7 @@ void ADC_Configuration_scanmode(void)
 #endif
   
   GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_0;
-  	GPIO_InitStructure.GPIO_Speed =  0; //GPIO_Speed_2MHz;
+  GPIO_InitStructure.GPIO_Speed =  0; //GPIO_Speed_2MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; 
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 
@@ -496,14 +665,21 @@ void ADC_Configuration_scanmode(void)
 	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;
 	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
 	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;  //ADC_DataAlign_Right; 
-	ADC_InitStructure.ADC_NbrOfChannel = 3;
+#ifdef KT_JIG
+       ADC_InitStructure.ADC_NbrOfChannel = 3;
+#else
+	ADC_InitStructure.ADC_NbrOfChannel = 4;
+#endif
 	ADC_Init(ADC1, &ADC_InitStructure);
 	/* ADC1 regular channels configuration */ 
 
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_28Cycles5); // dcv
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_11, 2, ADC_SampleTime_28Cycles5); // dca
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 3, ADC_SampleTime_28Cycles5);	// batt
 
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_12, 1, ADC_SampleTime_41Cycles5); // dcv
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_11, 2, ADC_SampleTime_41Cycles5); // dca
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_0,  3, ADC_SampleTime_41Cycles5);	// batt
+#ifndef KT_JIG	
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 4, ADC_SampleTime_41Cycles5); // batv
+#endif
 	
 	ADC_Cmd(ADC1, ENABLE);
 
@@ -607,6 +783,25 @@ void Timer4_Init(void)
 }
 
 
+void config_sys_type(uint8_t type)
+{
+	GPIO_InitTypeDef GPIO_InitStructure;
+
+	if ( type == TYPE_5G_C ) {
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;  // AC_FAIL, RECT_ON
+		GPIO_Init(GPIOA, &GPIO_InitStructure);
+	}
+	else {
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+		GPIO_Init(GPIOA, &GPIO_InitStructure);
+	}
+}
+
+
 
 void	 GPIOA_Configuration()
 {
@@ -640,6 +835,8 @@ void	 GPIOA_Configuration()
 	gpio2 : rect on, 5: SR on/off, 6: ECS_RESET, 7:ECS_CS, 8: POWER LED, 11: FAIL LED, 12:RUN LED, 15: WATHC DOG RESET
 
 */
+
+
 	GPIO_InitStructure.GPIO_Pin =   GPIO_Pin_1 | GPIO_Pin_3 | GPIO_Pin_15;	// rect_on, rect_enl
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -670,7 +867,7 @@ void	 GPIOA_Configuration()
 
 	// Configure DAC output
 	GPIO_InitStructure.GPIO_Speed =  GPIO_Speed_2MHz; 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5;	//A4:DC_REF
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_8;	//A4:DC_REF
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
@@ -735,13 +932,13 @@ void	GPIOC_Configuration()
 
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC| RCC_APB2Periph_AFIO,ENABLE);  // enabel APB2 clcok	
 
-	GPIO_Write(GPIOC, ETH_SEL_PIN);
-
+	
+#ifdef KT_JIG 
 	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_0 ;	
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &GPIO_InitStructure);
-
+#endif
 
 	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 ;	
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
@@ -767,6 +964,8 @@ void	GPIOC_Configuration()
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; 
 	GPIO_Init(GPIOC, &GPIO_InitStructure);
 	#endif
+
+	GPIO_Write(GPIOC, ETH_SEL_PIN);
 }
 
 
@@ -1788,14 +1987,7 @@ void	eeprom_write(uint32_t addr, uint8_t data)
 
 	if ( !eeprom_OK  ) return;
 
-#if 0
-	if ( addr >= 0x2000 ) {
-		addr -= 0x2000;
-		fram_addr = FRAM2_ADDR;
-		printf("
-	}
-	else 
-#endif
+
 	fram_addr = FRAM1_ADDR;
 
 

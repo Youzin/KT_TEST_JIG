@@ -42,8 +42,9 @@ Count=2
 MixedMode=1
 [StLinkDriver]
 CStepIntDis=_ 0
-stlinkserialNo=7283804B
+stlinkserialNo=26210787
 stlinkfoundProbes=
+LeaveTargetRunning=_ 0
 [SWOTraceHWSettings]
 OverrideDefaultClocks=0
 CpuClock=72000000
